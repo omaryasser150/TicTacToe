@@ -14,6 +14,9 @@ private:
     // Strategic evaluation functions
     int evaluatePosition(const Game& game);
     int evaluateLines(const Game& game);
+    
+    // Helper function to check if opponent would win with a specific move
+    bool wouldOpponentWin(const Game& game, int row, int col, Player opponent);
 
 public:
     AI(Player aiPlayer);
