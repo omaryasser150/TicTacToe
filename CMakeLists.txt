@@ -20,40 +20,46 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 endif()
 
-# Core library sources
+# Core library sources (updated paths)
 set(CORE_SOURCES
-    Auth.cpp
-    Game.cpp
-    AI.cpp
-    History.cpp
+    src/Auth.cpp
+    src/Game.cpp
+    src/AI.cpp
+    src/History.cpp
 )
 
 set(CORE_HEADERS
-    Auth.h
-    Game.h
-    AI.h
-    History.h
+    Header/Auth.h
+    Header/Game.h
+    Header/AI.h
+    Header/History.h
 )
 
 # Create core library
 add_library(TicTacToeCore STATIC ${CORE_SOURCES} ${CORE_HEADERS})
 
-# Main application sources (GUI components will be added later)
+# Add include directory for headers
+target_include_directories(TicTacToeCore PUBLIC Header)
+
+# Main application sources (updated paths)
 set(APP_SOURCES
-    main.cpp
-    # StartupWindow.cpp    # Uncomment when GUI files are available
-    # GameWindow.cpp       # Uncomment when GUI files are available
-    # HistoryWindow.cpp    # Uncomment when GUI files are available
+    src/main.cpp
+    # src/StartupWindow.cpp    # Uncomment when GUI files are available
+    # src/GameWindow.cpp       # Uncomment when GUI files are available
+    # src/HistoryWindow.cpp    # Uncomment when GUI files are available
 )
 
 set(APP_HEADERS
-    # StartupWindow.h      # Uncomment when GUI files are available
-    # GameWindow.h         # Uncomment when GUI files are available
-    # HistoryWindow.h      # Uncomment when GUI files are available
+    # Header/StartupWindow.h      # Uncomment when GUI files are available
+    # Header/GameWindow.h         # Uncomment when GUI files are available
+    # Header/HistoryWindow.h      # Uncomment when GUI files are available
 )
 
 # Create main application executable
 add_executable(AdvancedTicTacToe ${APP_SOURCES} ${APP_HEADERS})
+
+# Add include directory for main application
+target_include_directories(AdvancedTicTacToe PRIVATE Header)
 
 # Link libraries to main application
 target_link_libraries(AdvancedTicTacToe 
@@ -66,7 +72,7 @@ target_link_libraries(AdvancedTicTacToe
 option(BUILD_TESTS "Build test executable" ON)
 
 if(BUILD_TESTS)
-    # Test sources
+    # Test sources (updated paths)
     set(TEST_SOURCES
         tests/test_main.cpp
         tests/test_auth.cpp
@@ -77,6 +83,9 @@ if(BUILD_TESTS)
 
     # Create test executable
     add_executable(RunTests ${TEST_SOURCES})
+    
+    # Add include directory for tests
+    target_include_directories(RunTests PRIVATE Header)
     
     # Link libraries to test executable
     target_link_libraries(RunTests TicTacToeCore)
