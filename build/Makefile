@@ -64,15 +64,25 @@ CMAKE_BINARY_DIR = C:\Users\omary\My-Github\TicTacToe\build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	C:\msys64\mingw64\bin\ctest.exe $(ARGS)
-.PHONY : test
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
+	C:\msys64\mingw64\bin\cpack.exe --config ./CPackConfig.cmake
+.PHONY : package
 
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
+# Special rule for the target package
+package/fast: package
+.PHONY : package/fast
+
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
+	C:\msys64\mingw64\bin\cpack.exe --config ./CPackSourceConfig.cmake C:/Users/omary/My-Github/TicTacToe/build/CPackSourceConfig.cmake
+.PHONY : package_source
+
+# Special rule for the target package_source
+package_source/fast: package_source
+.PHONY : package_source/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -96,7 +106,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"gmock\" \"gtest\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -171,93 +181,206 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named runTests
+# Target rules for targets named TicTacToeCore
 
 # Build rule for target.
-runTests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 runTests
-.PHONY : runTests
+TicTacToeCore: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TicTacToeCore
+.PHONY : TicTacToeCore
 
 # fast build rule for target.
-runTests/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\runTests.dir\build.make CMakeFiles/runTests.dir/build
-.PHONY : runTests/fast
+TicTacToeCore/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/build
+.PHONY : TicTacToeCore/fast
 
 #=============================================================================
-# Target rules for targets named gmock
+# Target rules for targets named AdvancedTicTacToe
 
 # Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 gmock
-.PHONY : gmock
+AdvancedTicTacToe: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 AdvancedTicTacToe
+.PHONY : AdvancedTicTacToe
 
 # fast build rule for target.
-gmock/fast:
-	$(MAKE) $(MAKESILENT) -f external\googletest\googlemock\CMakeFiles\gmock.dir\build.make external/googletest/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
+AdvancedTicTacToe/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/build
+.PHONY : AdvancedTicTacToe/fast
 
 #=============================================================================
-# Target rules for targets named gmock_main
+# Target rules for targets named RunTests
 
 # Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 gmock_main
-.PHONY : gmock_main
+RunTests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 RunTests
+.PHONY : RunTests
 
 # fast build rule for target.
-gmock_main/fast:
-	$(MAKE) $(MAKESILENT) -f external\googletest\googlemock\CMakeFiles\gmock_main.dir\build.make external/googletest/googlemock/CMakeFiles/gmock_main.dir/build
-.PHONY : gmock_main/fast
+RunTests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/build
+.PHONY : RunTests/fast
 
 #=============================================================================
-# Target rules for targets named gtest
+# Target rules for targets named run_tests
 
 # Build rule for target.
-gtest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 gtest
-.PHONY : gtest
+run_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 run_tests
+.PHONY : run_tests
 
 # fast build rule for target.
-gtest/fast:
-	$(MAKE) $(MAKESILENT) -f external\googletest\googletest\CMakeFiles\gtest.dir\build.make external/googletest/googletest/CMakeFiles/gtest.dir/build
-.PHONY : gtest/fast
+run_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\run_tests.dir\build.make CMakeFiles/run_tests.dir/build
+.PHONY : run_tests/fast
 
 #=============================================================================
-# Target rules for targets named gtest_main
+# Target rules for targets named TicTacToeCore_autogen_timestamp_deps
 
 # Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 gtest_main
-.PHONY : gtest_main
+TicTacToeCore_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TicTacToeCore_autogen_timestamp_deps
+.PHONY : TicTacToeCore_autogen_timestamp_deps
 
 # fast build rule for target.
-gtest_main/fast:
-	$(MAKE) $(MAKESILENT) -f external\googletest\googletest\CMakeFiles\gtest_main.dir\build.make external/googletest/googletest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
+TicTacToeCore_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen_timestamp_deps.dir\build.make CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/build
+.PHONY : TicTacToeCore_autogen_timestamp_deps/fast
 
-tests/GameTest.obj: tests/GameTest.cpp.obj
-.PHONY : tests/GameTest.obj
+#=============================================================================
+# Target rules for targets named TicTacToeCore_autogen
+
+# Build rule for target.
+TicTacToeCore_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TicTacToeCore_autogen
+.PHONY : TicTacToeCore_autogen
+
+# fast build rule for target.
+TicTacToeCore_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen.dir\build.make CMakeFiles/TicTacToeCore_autogen.dir/build
+.PHONY : TicTacToeCore_autogen/fast
+
+#=============================================================================
+# Target rules for targets named AdvancedTicTacToe_autogen_timestamp_deps
+
+# Build rule for target.
+AdvancedTicTacToe_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 AdvancedTicTacToe_autogen_timestamp_deps
+.PHONY : AdvancedTicTacToe_autogen_timestamp_deps
+
+# fast build rule for target.
+AdvancedTicTacToe_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen_timestamp_deps.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/build
+.PHONY : AdvancedTicTacToe_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named AdvancedTicTacToe_autogen
+
+# Build rule for target.
+AdvancedTicTacToe_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 AdvancedTicTacToe_autogen
+.PHONY : AdvancedTicTacToe_autogen
+
+# fast build rule for target.
+AdvancedTicTacToe_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen.dir/build
+.PHONY : AdvancedTicTacToe_autogen/fast
+
+#=============================================================================
+# Target rules for targets named RunTests_autogen_timestamp_deps
+
+# Build rule for target.
+RunTests_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 RunTests_autogen_timestamp_deps
+.PHONY : RunTests_autogen_timestamp_deps
+
+# fast build rule for target.
+RunTests_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen_timestamp_deps.dir\build.make CMakeFiles/RunTests_autogen_timestamp_deps.dir/build
+.PHONY : RunTests_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named RunTests_autogen
+
+# Build rule for target.
+RunTests_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 RunTests_autogen
+.PHONY : RunTests_autogen
+
+# fast build rule for target.
+RunTests_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen.dir\build.make CMakeFiles/RunTests_autogen.dir/build
+.PHONY : RunTests_autogen/fast
+
+AdvancedTicTacToe_autogen/mocs_compilation.obj: AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj
+.PHONY : AdvancedTicTacToe_autogen/mocs_compilation.obj
 
 # target to build an object file
-tests/GameTest.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\runTests.dir\build.make CMakeFiles/runTests.dir/tests/GameTest.cpp.obj
-.PHONY : tests/GameTest.cpp.obj
+AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj
+.PHONY : AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj
 
-tests/GameTest.i: tests/GameTest.cpp.i
-.PHONY : tests/GameTest.i
+AdvancedTicTacToe_autogen/mocs_compilation.i: AdvancedTicTacToe_autogen/mocs_compilation.cpp.i
+.PHONY : AdvancedTicTacToe_autogen/mocs_compilation.i
 
 # target to preprocess a source file
-tests/GameTest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\runTests.dir\build.make CMakeFiles/runTests.dir/tests/GameTest.cpp.i
-.PHONY : tests/GameTest.cpp.i
+AdvancedTicTacToe_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.i
+.PHONY : AdvancedTicTacToe_autogen/mocs_compilation.cpp.i
 
-tests/GameTest.s: tests/GameTest.cpp.s
-.PHONY : tests/GameTest.s
+AdvancedTicTacToe_autogen/mocs_compilation.s: AdvancedTicTacToe_autogen/mocs_compilation.cpp.s
+.PHONY : AdvancedTicTacToe_autogen/mocs_compilation.s
 
 # target to generate assembly for a file
-tests/GameTest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\runTests.dir\build.make CMakeFiles/runTests.dir/tests/GameTest.cpp.s
-.PHONY : tests/GameTest.cpp.s
+AdvancedTicTacToe_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.s
+.PHONY : AdvancedTicTacToe_autogen/mocs_compilation.cpp.s
+
+RunTests_autogen/mocs_compilation.obj: RunTests_autogen/mocs_compilation.cpp.obj
+.PHONY : RunTests_autogen/mocs_compilation.obj
+
+# target to build an object file
+RunTests_autogen/mocs_compilation.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj
+.PHONY : RunTests_autogen/mocs_compilation.cpp.obj
+
+RunTests_autogen/mocs_compilation.i: RunTests_autogen/mocs_compilation.cpp.i
+.PHONY : RunTests_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+RunTests_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.i
+.PHONY : RunTests_autogen/mocs_compilation.cpp.i
+
+RunTests_autogen/mocs_compilation.s: RunTests_autogen/mocs_compilation.cpp.s
+.PHONY : RunTests_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+RunTests_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.s
+.PHONY : RunTests_autogen/mocs_compilation.cpp.s
+
+TicTacToeCore_autogen/mocs_compilation.obj: TicTacToeCore_autogen/mocs_compilation.cpp.obj
+.PHONY : TicTacToeCore_autogen/mocs_compilation.obj
+
+# target to build an object file
+TicTacToeCore_autogen/mocs_compilation.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj
+.PHONY : TicTacToeCore_autogen/mocs_compilation.cpp.obj
+
+TicTacToeCore_autogen/mocs_compilation.i: TicTacToeCore_autogen/mocs_compilation.cpp.i
+.PHONY : TicTacToeCore_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+TicTacToeCore_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.i
+.PHONY : TicTacToeCore_autogen/mocs_compilation.cpp.i
+
+TicTacToeCore_autogen/mocs_compilation.s: TicTacToeCore_autogen/mocs_compilation.cpp.s
+.PHONY : TicTacToeCore_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+TicTacToeCore_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.s
+.PHONY : TicTacToeCore_autogen/mocs_compilation.cpp.s
 
 # Help Target
 help:
@@ -270,16 +393,28 @@ help:
 	@echo ... install/local
 	@echo ... install/strip
 	@echo ... list_install_components
+	@echo ... package
+	@echo ... package_source
 	@echo ... rebuild_cache
-	@echo ... test
-	@echo ... gmock
-	@echo ... gmock_main
-	@echo ... gtest
-	@echo ... gtest_main
-	@echo ... runTests
-	@echo ... tests/GameTest.obj
-	@echo ... tests/GameTest.i
-	@echo ... tests/GameTest.s
+	@echo ... AdvancedTicTacToe_autogen
+	@echo ... AdvancedTicTacToe_autogen_timestamp_deps
+	@echo ... RunTests_autogen
+	@echo ... RunTests_autogen_timestamp_deps
+	@echo ... TicTacToeCore_autogen
+	@echo ... TicTacToeCore_autogen_timestamp_deps
+	@echo ... run_tests
+	@echo ... AdvancedTicTacToe
+	@echo ... RunTests
+	@echo ... TicTacToeCore
+	@echo ... AdvancedTicTacToe_autogen/mocs_compilation.obj
+	@echo ... AdvancedTicTacToe_autogen/mocs_compilation.i
+	@echo ... AdvancedTicTacToe_autogen/mocs_compilation.s
+	@echo ... RunTests_autogen/mocs_compilation.obj
+	@echo ... RunTests_autogen/mocs_compilation.i
+	@echo ... RunTests_autogen/mocs_compilation.s
+	@echo ... TicTacToeCore_autogen/mocs_compilation.obj
+	@echo ... TicTacToeCore_autogen/mocs_compilation.i
+	@echo ... TicTacToeCore_autogen/mocs_compilation.s
 .PHONY : help
 
 

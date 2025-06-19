@@ -4,7 +4,7 @@
 # compile CXX with C:/msys64/mingw64/bin/c++.exe
 CXX_DEFINES = 
 
-CXX_INCLUDES = @CMakeFiles/runTests.dir/includes_CXX.rsp
+CXX_INCLUDES = @CMakeFiles/RunTests.dir/includes_CXX.rsp
 
-CXX_FLAGS = -std=gnu++17
+CXX_FLAGS =  -Wall -Wextra -pedantic -std=gnu++17
 

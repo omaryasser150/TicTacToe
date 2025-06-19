@@ -1,1 +1,1 @@
--isystem "C:/Users/omary/My-Github/TicTacToe/external/googletest/googletest/include" -isystem "C:/Users/omary/My-Github/TicTacToe/external/googletest/googletest"
+-I"C:/Users/omary/My-Github/TicTacToe/build/RunTests_autogen/include"
