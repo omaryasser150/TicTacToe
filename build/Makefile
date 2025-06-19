@@ -382,6 +382,126 @@ TicTacToeCore_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.s
 .PHONY : TicTacToeCore_autogen/mocs_compilation.cpp.s
 
+tests/test_ai.obj: tests/test_ai.cpp.obj
+.PHONY : tests/test_ai.obj
+
+# target to build an object file
+tests/test_ai.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj
+.PHONY : tests/test_ai.cpp.obj
+
+tests/test_ai.i: tests/test_ai.cpp.i
+.PHONY : tests/test_ai.i
+
+# target to preprocess a source file
+tests/test_ai.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_ai.cpp.i
+.PHONY : tests/test_ai.cpp.i
+
+tests/test_ai.s: tests/test_ai.cpp.s
+.PHONY : tests/test_ai.s
+
+# target to generate assembly for a file
+tests/test_ai.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_ai.cpp.s
+.PHONY : tests/test_ai.cpp.s
+
+tests/test_auth.obj: tests/test_auth.cpp.obj
+.PHONY : tests/test_auth.obj
+
+# target to build an object file
+tests/test_auth.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj
+.PHONY : tests/test_auth.cpp.obj
+
+tests/test_auth.i: tests/test_auth.cpp.i
+.PHONY : tests/test_auth.i
+
+# target to preprocess a source file
+tests/test_auth.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_auth.cpp.i
+.PHONY : tests/test_auth.cpp.i
+
+tests/test_auth.s: tests/test_auth.cpp.s
+.PHONY : tests/test_auth.s
+
+# target to generate assembly for a file
+tests/test_auth.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_auth.cpp.s
+.PHONY : tests/test_auth.cpp.s
+
+tests/test_game.obj: tests/test_game.cpp.obj
+.PHONY : tests/test_game.obj
+
+# target to build an object file
+tests/test_game.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_game.cpp.obj
+.PHONY : tests/test_game.cpp.obj
+
+tests/test_game.i: tests/test_game.cpp.i
+.PHONY : tests/test_game.i
+
+# target to preprocess a source file
+tests/test_game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_game.cpp.i
+.PHONY : tests/test_game.cpp.i
+
+tests/test_game.s: tests/test_game.cpp.s
+.PHONY : tests/test_game.s
+
+# target to generate assembly for a file
+tests/test_game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_game.cpp.s
+.PHONY : tests/test_game.cpp.s
+
+tests/test_history.obj: tests/test_history.cpp.obj
+.PHONY : tests/test_history.obj
+
+# target to build an object file
+tests/test_history.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_history.cpp.obj
+.PHONY : tests/test_history.cpp.obj
+
+tests/test_history.i: tests/test_history.cpp.i
+.PHONY : tests/test_history.i
+
+# target to preprocess a source file
+tests/test_history.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_history.cpp.i
+.PHONY : tests/test_history.cpp.i
+
+tests/test_history.s: tests/test_history.cpp.s
+.PHONY : tests/test_history.s
+
+# target to generate assembly for a file
+tests/test_history.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_history.cpp.s
+.PHONY : tests/test_history.cpp.s
+
+tests/test_main.obj: tests/test_main.cpp.obj
+.PHONY : tests/test_main.obj
+
+# target to build an object file
+tests/test_main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_main.cpp.obj
+.PHONY : tests/test_main.cpp.obj
+
+tests/test_main.i: tests/test_main.cpp.i
+.PHONY : tests/test_main.i
+
+# target to preprocess a source file
+tests/test_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_main.cpp.i
+.PHONY : tests/test_main.cpp.i
+
+tests/test_main.s: tests/test_main.cpp.s
+.PHONY : tests/test_main.s
+
+# target to generate assembly for a file
+tests/test_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_main.cpp.s
+.PHONY : tests/test_main.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -415,6 +535,21 @@ help:
 	@echo ... TicTacToeCore_autogen/mocs_compilation.obj
 	@echo ... TicTacToeCore_autogen/mocs_compilation.i
 	@echo ... TicTacToeCore_autogen/mocs_compilation.s
+	@echo ... tests/test_ai.obj
+	@echo ... tests/test_ai.i
+	@echo ... tests/test_ai.s
+	@echo ... tests/test_auth.obj
+	@echo ... tests/test_auth.i
+	@echo ... tests/test_auth.s
+	@echo ... tests/test_game.obj
+	@echo ... tests/test_game.i
+	@echo ... tests/test_game.s
+	@echo ... tests/test_history.obj
+	@echo ... tests/test_history.i
+	@echo ... tests/test_history.s
+	@echo ... tests/test_main.obj
+	@echo ... tests/test_main.i
+	@echo ... tests/test_main.s
 .PHONY : help
 
 

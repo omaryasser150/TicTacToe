@@ -456,7 +456,18 @@
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 9,
 	"SETTINGS_FILE" : "C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/RunTests_autogen.dir/AutogenUsed.txt",
-	"SOURCES" : [],
+	"SOURCES" : 
+	[
+		[ "C:/Users/omary/My-Github/TicTacToe/tests/test_ai.cpp", "MU", null ],
+		[ "C:/Users/omary/My-Github/TicTacToe/tests/test_auth.cpp", "MU", null ],
+		[ "C:/Users/omary/My-Github/TicTacToe/tests/test_game.cpp", "MU", null ],
+		[
+			"C:/Users/omary/My-Github/TicTacToe/tests/test_history.cpp",
+			"MU",
+			null
+		],
+		[ "C:/Users/omary/My-Github/TicTacToe/tests/test_main.cpp", "MU", null ]
+	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : 
