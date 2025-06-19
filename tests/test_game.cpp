@@ -1,9 +1,14 @@
 // test_game.cpp
 #include "Game.h"
 #include <iostream>
-
 #include <stdexcept>
+#include <functional>
+#include <string>
 
+class TestRunner {
+public:
+    void addTest(const std::string& name, std::function<void()> test);
+};
 
 #define ASSERT_TRUE(condition) \
     if (!(condition)) { \
