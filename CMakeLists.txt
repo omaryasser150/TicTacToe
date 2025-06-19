@@ -39,6 +39,7 @@ option(BUILD_TESTS "Build test executable" ON)
 if(BUILD_TESTS)
     # Test sources (updated paths)
     set(TEST_SOURCES
+	tests/test_main.cpp
         tests/test_auth.cpp
         tests/test_game.cpp
         tests/test_ai.cpp
