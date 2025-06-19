@@ -22,7 +22,12 @@ int AI::minimax(Game game, bool isMaximizing, int alpha, int beta, int depth) {
     
     std::vector<std::pair<int, int>> availableMoves = game.getAvailableMoves();
     
-    if (isMaximizing) {
+    // Determine which player's turn it is
+    Player currentPlayer = game.getCurrentPlayer();
+    bool isAITurn = (currentPlayer == aiPlayer);
+    
+    if (isAITurn) {
+        // AI's turn - maximize
         int maxEval = INT_MIN;
         for (const auto& move : availableMoves) {
             Game tempGame = game;
@@ -36,6 +41,7 @@ int AI::minimax(Game game, bool isMaximizing, int alpha, int beta, int depth) {
         }
         return maxEval;
     } else {
+        // Opponent's turn - minimize
         int minEval = INT_MAX;
         for (const auto& move : availableMoves) {
             Game tempGame = game;
@@ -64,6 +70,27 @@ std::pair<int, int> AI::findBestMove(Game game) {
         return availableMoves[0];
     }
     
+    // First, check for immediate winning moves
+    for (const auto& move : availableMoves) {
+        Game tempGame = game;
+        tempGame.makeMove(move.first, move.second);
+        if (tempGame.getWinner() == aiPlayer) {
+            return move; // Take the winning move immediately
+        }
+    }
+    
+    // Second, check for blocking moves (prevent opponent from winning)
+    Player opponent = (aiPlayer == Player::X) ? Player::O : Player::X;
+    for (const auto& move : availableMoves) {
+        Game tempGame = game;
+        // Simulate opponent making this move
+        tempGame.makeMove(move.first, move.second);
+        if (tempGame.getWinner() == opponent) {
+            return move; // Block the opponent's winning move
+        }
+    }
+    
+    // If no immediate win/block, use minimax
     std::pair<int, int> bestMove = availableMoves[0];
     int bestValue = INT_MIN;
     
@@ -71,7 +98,7 @@ std::pair<int, int> AI::findBestMove(Game game) {
         Game tempGame = game;
         tempGame.makeMove(move.first, move.second);
         
-        // After making the move, it's the opponent's turn, so we minimize
+        // After AI makes the move, it's opponent's turn
         int moveValue = minimax(tempGame, false, INT_MIN, INT_MAX, 0);
         
         if (moveValue > bestValue) {
