@@ -6,7 +6,6 @@
 
 #include <stdexcept>
 
-extern class TestRunner testRunner;
 
 #define ASSERT_TRUE(condition) \
     if (!(condition)) { \
@@ -188,7 +187,7 @@ void testAuthClearUsers() {
     std::filesystem::remove("test_users.db");
 }
 
-void runAuthTests() {
+void runAuthTests(TestRunner& testRunner) {
     testRunner.addTest("Auth Registration", testAuthRegistration);
     testRunner.addTest("Auth Login", testAuthLogin);
     testRunner.addTest("Auth Password Change", testAuthPasswordChange);

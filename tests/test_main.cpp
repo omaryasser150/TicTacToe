@@ -35,13 +35,13 @@ public:
 TestRunner testRunner;
 
 // Declare test functions
-void runAuthTests();
-void runGameTests();
+void runAuthTests(TestRunner& testRunner);
+void runGameTests(TestRunner& testRunner);
 void runAITests();
 
 int main() {
-    runAuthTests();
-    runGameTests();
+    runAuthTests(testRunner);
+    runGameTests(testRunner);
     runAITests();
     
     testRunner.runAll();

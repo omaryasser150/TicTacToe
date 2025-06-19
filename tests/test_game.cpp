@@ -4,7 +4,6 @@
 
 #include <stdexcept>
 
-extern class TestRunner testRunner;
 
 #define ASSERT_TRUE(condition) \
     if (!(condition)) { \
@@ -256,7 +255,7 @@ void testGamePlayerAlternation() {
     ASSERT_EQ(Player::O, game.getCurrentPlayer()); // Should still be O's turn
 }
 
-void runGameTests() {
+void runGameTests(TestRunner& testRunner) {
     testRunner.addTest("Game Initialization", testGameInitialization);
     testRunner.addTest("Game Basic Moves", testGameBasicMoves);
     testRunner.addTest("Game Win Conditions", testGameWinConditions);
