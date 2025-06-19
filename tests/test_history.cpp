@@ -315,8 +315,8 @@ public:
         History history(username);
         
         for (int i = 0; i < 10; ++i) {
-            std::string timestamp = "2024-01-15 10:" + 
-                                  (i < 10 ? "0" : "") + std::to_string(i) + ":00";
+            std::string timestamp = std::string("2024-01-15 10:") +
+                       (i < 10 ? "0" : "") + std::to_string(i) + ":00";
             std::string result = (i % 3 == 0) ? "Win" : (i % 3 == 1) ? "Loss" : "Draw";
             
             GameResult gameResult = {timestamp, result};
@@ -355,9 +355,9 @@ public:
         auto start = std::chrono::high_resolution_clock::now();
         
         for (int i = 0; i < numEntries; ++i) {
-            std::string date = "2024-01-" + 
-                              (i % 28 + 1 < 10 ? "0" : "") + 
-                              std::to_string(i % 28 + 1) + " 10:00:00";
+            std::string date = std::string("2024-01-") +
+                  (i % 28 + 1 < 10 ? "0" : "") +
+                  std::to_string(i % 28 + 1);
             std::string result = (i % 3 == 0) ? "Win" : (i % 3 == 1) ? "Loss" : "Draw";
             
             GameResult gameResult = {date, result};
