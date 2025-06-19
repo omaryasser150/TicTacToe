@@ -1,6 +1,6 @@
 // test_ai.cpp
-#include "../AI.h"
-#include "../Game.h"
+#include "AI.h"
+#include "Game.h"
 #include <iostream>
 #include <cassert>
 #include <vector>

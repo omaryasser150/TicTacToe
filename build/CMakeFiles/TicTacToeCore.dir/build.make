@@ -68,36 +68,14 @@ include CMakeFiles/TicTacToeCore.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/TicTacToeCore.dir/flags.make
 
-TicTacToeCore_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/moc.exe
-TicTacToeCore_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/uic.exe
-TicTacToeCore_autogen/timestamp: CMakeFiles/TicTacToeCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target TicTacToeCore"
-	C:\msys64\mingw64\bin\cmake.exe -E cmake_autogen C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore_autogen.dir/AutogenInfo.json ""
-	C:\msys64\mingw64\bin\cmake.exe -E touch C:/Users/omary/My-Github/TicTacToe/build/TicTacToeCore_autogen/timestamp
-
 CMakeFiles/TicTacToeCore.dir/codegen:
 .PHONY : CMakeFiles/TicTacToeCore.dir/codegen
-
-CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj: CMakeFiles/TicTacToeCore.dir/flags.make
-CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj: CMakeFiles/TicTacToeCore.dir/includes_CXX.rsp
-CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj: TicTacToeCore_autogen/mocs_compilation.cpp
-CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj: CMakeFiles/TicTacToeCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj -MF CMakeFiles\TicTacToeCore.dir\TicTacToeCore_autogen\mocs_compilation.cpp.obj.d -o CMakeFiles\TicTacToeCore.dir\TicTacToeCore_autogen\mocs_compilation.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\build\TicTacToeCore_autogen\mocs_compilation.cpp
-
-CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.i"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\omary\My-Github\TicTacToe\build\TicTacToeCore_autogen\mocs_compilation.cpp > CMakeFiles\TicTacToeCore.dir\TicTacToeCore_autogen\mocs_compilation.cpp.i
-
-CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.s"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\omary\My-Github\TicTacToe\build\TicTacToeCore_autogen\mocs_compilation.cpp -o CMakeFiles\TicTacToeCore.dir\TicTacToeCore_autogen\mocs_compilation.cpp.s
 
 CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj: CMakeFiles/TicTacToeCore.dir/flags.make
 CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj: CMakeFiles/TicTacToeCore.dir/includes_CXX.rsp
 CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj: C:/Users/omary/My-Github/TicTacToe/src/Auth.cpp
 CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj: CMakeFiles/TicTacToeCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj -MF CMakeFiles\TicTacToeCore.dir\src\Auth.cpp.obj.d -o CMakeFiles\TicTacToeCore.dir\src\Auth.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\src\Auth.cpp
 
 CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.i: cmake_force
@@ -112,7 +90,7 @@ CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj: CMakeFiles/TicTacToeCore.dir/flag
 CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj: CMakeFiles/TicTacToeCore.dir/includes_CXX.rsp
 CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj: C:/Users/omary/My-Github/TicTacToe/src/Game.cpp
 CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj: CMakeFiles/TicTacToeCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj -MF CMakeFiles\TicTacToeCore.dir\src\Game.cpp.obj.d -o CMakeFiles\TicTacToeCore.dir\src\Game.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\src\Game.cpp
 
 CMakeFiles/TicTacToeCore.dir/src/Game.cpp.i: cmake_force
@@ -127,7 +105,7 @@ CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj: CMakeFiles/TicTacToeCore.dir/flags.
 CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj: CMakeFiles/TicTacToeCore.dir/includes_CXX.rsp
 CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj: C:/Users/omary/My-Github/TicTacToe/src/AI.cpp
 CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj: CMakeFiles/TicTacToeCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj -MF CMakeFiles\TicTacToeCore.dir\src\AI.cpp.obj.d -o CMakeFiles\TicTacToeCore.dir\src\AI.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\src\AI.cpp
 
 CMakeFiles/TicTacToeCore.dir/src/AI.cpp.i: cmake_force
@@ -142,7 +120,7 @@ CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj: CMakeFiles/TicTacToeCore.dir/f
 CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj: CMakeFiles/TicTacToeCore.dir/includes_CXX.rsp
 CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj: C:/Users/omary/My-Github/TicTacToe/src/History.cpp
 CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj: CMakeFiles/TicTacToeCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj -MF CMakeFiles\TicTacToeCore.dir\src\History.cpp.obj.d -o CMakeFiles\TicTacToeCore.dir\src\History.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\src\History.cpp
 
 CMakeFiles/TicTacToeCore.dir/src/History.cpp.i: cmake_force
@@ -155,7 +133,6 @@ CMakeFiles/TicTacToeCore.dir/src/History.cpp.s: cmake_force
 
 # Object files for target TicTacToeCore
 TicTacToeCore_OBJECTS = \
-"CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj" \
 "CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj" \
 "CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj" \
 "CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj" \
@@ -164,14 +141,13 @@ TicTacToeCore_OBJECTS = \
 # External object files for target TicTacToeCore
 TicTacToeCore_EXTERNAL_OBJECTS =
 
-libTicTacToeCore.a: CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj
 libTicTacToeCore.a: CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj
 libTicTacToeCore.a: CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj
 libTicTacToeCore.a: CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj
 libTicTacToeCore.a: CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj
 libTicTacToeCore.a: CMakeFiles/TicTacToeCore.dir/build.make
 libTicTacToeCore.a: CMakeFiles/TicTacToeCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libTicTacToeCore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libTicTacToeCore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles\TicTacToeCore.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\TicTacToeCore.dir\link.txt --verbose=$(VERBOSE)
 
@@ -183,7 +159,7 @@ CMakeFiles/TicTacToeCore.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles\TicTacToeCore.dir\cmake_clean.cmake
 .PHONY : CMakeFiles/TicTacToeCore.dir/clean
 
-CMakeFiles/TicTacToeCore.dir/depend: TicTacToeCore_autogen/timestamp
+CMakeFiles/TicTacToeCore.dir/depend:
 	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\omary\My-Github\TicTacToe C:\Users\omary\My-Github\TicTacToe C:\Users\omary\My-Github\TicTacToe\build C:\Users\omary\My-Github\TicTacToe\build C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles\TicTacToeCore.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/TicTacToeCore.dir/depend
 

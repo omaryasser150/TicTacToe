@@ -1,5 +1,5 @@
 // test_game.cpp
-#include "../Game.h"
+#include "Game.h"
 #include <iostream>
 
 // External declarations from test_main.cpp

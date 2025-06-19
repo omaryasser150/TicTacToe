@@ -65,9 +65,9 @@ include CMakeFiles/run_tests.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/run_tests.dir/progress.make
 
-CMakeFiles/run_tests: tests/RunTests.exe
+CMakeFiles/run_tests: RunTests.exe
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running tests..."
-	C:\Users\omary\My-Github\TicTacToe\build\tests\RunTests.exe
+	C:\Users\omary\My-Github\TicTacToe\build\RunTests.exe
 
 CMakeFiles/run_tests.dir/codegen:
 .PHONY : CMakeFiles/run_tests.dir/codegen

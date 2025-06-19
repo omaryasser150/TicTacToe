@@ -63,13 +63,11 @@ CMAKE_BINARY_DIR = C:\Users\omary\My-Github\TicTacToe\build
 
 # The main recursive "all" target.
 all: CMakeFiles/TicTacToeCore.dir/all
-all: CMakeFiles/AdvancedTicTacToe.dir/all
 all: CMakeFiles/RunTests.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/TicTacToeCore.dir/codegen
-codegen: CMakeFiles/AdvancedTicTacToe.dir/codegen
 codegen: CMakeFiles/RunTests.dir/codegen
 .PHONY : codegen
 
@@ -79,31 +77,23 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/TicTacToeCore.dir/clean
-clean: CMakeFiles/AdvancedTicTacToe.dir/clean
 clean: CMakeFiles/RunTests.dir/clean
 clean: CMakeFiles/run_tests.dir/clean
-clean: CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/clean
-clean: CMakeFiles/TicTacToeCore_autogen.dir/clean
-clean: CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/clean
-clean: CMakeFiles/AdvancedTicTacToe_autogen.dir/clean
-clean: CMakeFiles/RunTests_autogen_timestamp_deps.dir/clean
-clean: CMakeFiles/RunTests_autogen.dir/clean
 .PHONY : clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/TicTacToeCore.dir
 
 # All Build rule for target.
-CMakeFiles/TicTacToeCore.dir/all: CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/all
-CMakeFiles/TicTacToeCore.dir/all: CMakeFiles/TicTacToeCore_autogen.dir/all
+CMakeFiles/TicTacToeCore.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=15,16,17,18,19,20,21 "Built target TicTacToeCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=6,7,8,9,10 "Built target TicTacToeCore"
 .PHONY : CMakeFiles/TicTacToeCore.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TicTacToeCore.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/TicTacToeCore.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
 .PHONY : CMakeFiles/TicTacToeCore.dir/rule
@@ -113,9 +103,9 @@ TicTacToeCore: CMakeFiles/TicTacToeCore.dir/rule
 .PHONY : TicTacToeCore
 
 # codegen rule for target.
-CMakeFiles/TicTacToeCore.dir/codegen: CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/all
+CMakeFiles/TicTacToeCore.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=15,16,17,18,19,20,21 "Finished codegen for target TicTacToeCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=6,7,8,9,10 "Finished codegen for target TicTacToeCore"
 .PHONY : CMakeFiles/TicTacToeCore.dir/codegen
 
 # clean rule for target.
@@ -124,54 +114,18 @@ CMakeFiles/TicTacToeCore.dir/clean:
 .PHONY : CMakeFiles/TicTacToeCore.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/AdvancedTicTacToe.dir
-
-# All Build rule for target.
-CMakeFiles/AdvancedTicTacToe.dir/all: CMakeFiles/TicTacToeCore.dir/all
-CMakeFiles/AdvancedTicTacToe.dir/all: CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/all
-CMakeFiles/AdvancedTicTacToe.dir/all: CMakeFiles/AdvancedTicTacToe_autogen.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=1,2,3,4 "Built target AdvancedTicTacToe"
-.PHONY : CMakeFiles/AdvancedTicTacToe.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/AdvancedTicTacToe.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 13
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/AdvancedTicTacToe.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
-.PHONY : CMakeFiles/AdvancedTicTacToe.dir/rule
-
-# Convenience name for target.
-AdvancedTicTacToe: CMakeFiles/AdvancedTicTacToe.dir/rule
-.PHONY : AdvancedTicTacToe
-
-# codegen rule for target.
-CMakeFiles/AdvancedTicTacToe.dir/codegen: CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target AdvancedTicTacToe"
-.PHONY : CMakeFiles/AdvancedTicTacToe.dir/codegen
-
-# clean rule for target.
-CMakeFiles/AdvancedTicTacToe.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/clean
-.PHONY : CMakeFiles/AdvancedTicTacToe.dir/clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/RunTests.dir
 
 # All Build rule for target.
 CMakeFiles/RunTests.dir/all: CMakeFiles/TicTacToeCore.dir/all
-CMakeFiles/RunTests.dir/all: CMakeFiles/RunTests_autogen.dir/all
-CMakeFiles/RunTests.dir/all: CMakeFiles/RunTests_autogen_timestamp_deps.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=6,7,8,9,10,11,12,13 "Built target RunTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=1,2,3,4,5 "Built target RunTests"
 .PHONY : CMakeFiles/RunTests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/RunTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/RunTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
 .PHONY : CMakeFiles/RunTests.dir/rule
@@ -181,9 +135,9 @@ RunTests: CMakeFiles/RunTests.dir/rule
 .PHONY : RunTests
 
 # codegen rule for target.
-CMakeFiles/RunTests.dir/codegen: CMakeFiles/RunTests_autogen_timestamp_deps.dir/all
+CMakeFiles/RunTests.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=6,7,8,9,10,11,12,13 "Finished codegen for target RunTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=1,2,3,4,5 "Finished codegen for target RunTests"
 .PHONY : CMakeFiles/RunTests.dir/codegen
 
 # clean rule for target.
@@ -198,12 +152,12 @@ CMakeFiles/RunTests.dir/clean:
 CMakeFiles/run_tests.dir/all: CMakeFiles/RunTests.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\run_tests.dir\build.make CMakeFiles/run_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\run_tests.dir\build.make CMakeFiles/run_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=23 "Built target run_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=11 "Built target run_tests"
 .PHONY : CMakeFiles/run_tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/run_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/run_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
 .PHONY : CMakeFiles/run_tests.dir/rule
@@ -215,205 +169,13 @@ run_tests: CMakeFiles/run_tests.dir/rule
 # codegen rule for target.
 CMakeFiles/run_tests.dir/codegen: CMakeFiles/RunTests.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\run_tests.dir\build.make CMakeFiles/run_tests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=23 "Finished codegen for target run_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=11 "Finished codegen for target run_tests"
 .PHONY : CMakeFiles/run_tests.dir/codegen
 
 # clean rule for target.
 CMakeFiles/run_tests.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\run_tests.dir\build.make CMakeFiles/run_tests.dir/clean
 .PHONY : CMakeFiles/run_tests.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir
-
-# All Build rule for target.
-CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen_timestamp_deps.dir\build.make CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen_timestamp_deps.dir\build.make CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num= "Built target TicTacToeCore_autogen_timestamp_deps"
-.PHONY : CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
-.PHONY : CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/rule
-
-# Convenience name for target.
-TicTacToeCore_autogen_timestamp_deps: CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/rule
-.PHONY : TicTacToeCore_autogen_timestamp_deps
-
-# codegen rule for target.
-CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen_timestamp_deps.dir\build.make CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num= "Finished codegen for target TicTacToeCore_autogen_timestamp_deps"
-.PHONY : CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/codegen
-
-# clean rule for target.
-CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen_timestamp_deps.dir\build.make CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/clean
-.PHONY : CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/TicTacToeCore_autogen.dir
-
-# All Build rule for target.
-CMakeFiles/TicTacToeCore_autogen.dir/all: CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen.dir\build.make CMakeFiles/TicTacToeCore_autogen.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen.dir\build.make CMakeFiles/TicTacToeCore_autogen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=22 "Built target TicTacToeCore_autogen"
-.PHONY : CMakeFiles/TicTacToeCore_autogen.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/TicTacToeCore_autogen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/TicTacToeCore_autogen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
-.PHONY : CMakeFiles/TicTacToeCore_autogen.dir/rule
-
-# Convenience name for target.
-TicTacToeCore_autogen: CMakeFiles/TicTacToeCore_autogen.dir/rule
-.PHONY : TicTacToeCore_autogen
-
-# codegen rule for target.
-CMakeFiles/TicTacToeCore_autogen.dir/codegen: CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen.dir\build.make CMakeFiles/TicTacToeCore_autogen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=22 "Finished codegen for target TicTacToeCore_autogen"
-.PHONY : CMakeFiles/TicTacToeCore_autogen.dir/codegen
-
-# clean rule for target.
-CMakeFiles/TicTacToeCore_autogen.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore_autogen.dir\build.make CMakeFiles/TicTacToeCore_autogen.dir/clean
-.PHONY : CMakeFiles/TicTacToeCore_autogen.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir
-
-# All Build rule for target.
-CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/all: CMakeFiles/TicTacToeCore.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen_timestamp_deps.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen_timestamp_deps.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num= "Built target AdvancedTicTacToe_autogen_timestamp_deps"
-.PHONY : CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 8
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
-.PHONY : CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/rule
-
-# Convenience name for target.
-AdvancedTicTacToe_autogen_timestamp_deps: CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/rule
-.PHONY : AdvancedTicTacToe_autogen_timestamp_deps
-
-# codegen rule for target.
-CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen_timestamp_deps.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num= "Finished codegen for target AdvancedTicTacToe_autogen_timestamp_deps"
-.PHONY : CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/codegen
-
-# clean rule for target.
-CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen_timestamp_deps.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/clean
-.PHONY : CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/AdvancedTicTacToe_autogen.dir
-
-# All Build rule for target.
-CMakeFiles/AdvancedTicTacToe_autogen.dir/all: CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=5 "Built target AdvancedTicTacToe_autogen"
-.PHONY : CMakeFiles/AdvancedTicTacToe_autogen.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/AdvancedTicTacToe_autogen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/AdvancedTicTacToe_autogen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
-.PHONY : CMakeFiles/AdvancedTicTacToe_autogen.dir/rule
-
-# Convenience name for target.
-AdvancedTicTacToe_autogen: CMakeFiles/AdvancedTicTacToe_autogen.dir/rule
-.PHONY : AdvancedTicTacToe_autogen
-
-# codegen rule for target.
-CMakeFiles/AdvancedTicTacToe_autogen.dir/codegen: CMakeFiles/AdvancedTicTacToe_autogen_timestamp_deps.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=5 "Finished codegen for target AdvancedTicTacToe_autogen"
-.PHONY : CMakeFiles/AdvancedTicTacToe_autogen.dir/codegen
-
-# clean rule for target.
-CMakeFiles/AdvancedTicTacToe_autogen.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe_autogen.dir\build.make CMakeFiles/AdvancedTicTacToe_autogen.dir/clean
-.PHONY : CMakeFiles/AdvancedTicTacToe_autogen.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/RunTests_autogen_timestamp_deps.dir
-
-# All Build rule for target.
-CMakeFiles/RunTests_autogen_timestamp_deps.dir/all: CMakeFiles/TicTacToeCore.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen_timestamp_deps.dir\build.make CMakeFiles/RunTests_autogen_timestamp_deps.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen_timestamp_deps.dir\build.make CMakeFiles/RunTests_autogen_timestamp_deps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num= "Built target RunTests_autogen_timestamp_deps"
-.PHONY : CMakeFiles/RunTests_autogen_timestamp_deps.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/RunTests_autogen_timestamp_deps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 8
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/RunTests_autogen_timestamp_deps.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
-.PHONY : CMakeFiles/RunTests_autogen_timestamp_deps.dir/rule
-
-# Convenience name for target.
-RunTests_autogen_timestamp_deps: CMakeFiles/RunTests_autogen_timestamp_deps.dir/rule
-.PHONY : RunTests_autogen_timestamp_deps
-
-# codegen rule for target.
-CMakeFiles/RunTests_autogen_timestamp_deps.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen_timestamp_deps.dir\build.make CMakeFiles/RunTests_autogen_timestamp_deps.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num= "Finished codegen for target RunTests_autogen_timestamp_deps"
-.PHONY : CMakeFiles/RunTests_autogen_timestamp_deps.dir/codegen
-
-# clean rule for target.
-CMakeFiles/RunTests_autogen_timestamp_deps.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen_timestamp_deps.dir\build.make CMakeFiles/RunTests_autogen_timestamp_deps.dir/clean
-.PHONY : CMakeFiles/RunTests_autogen_timestamp_deps.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/RunTests_autogen.dir
-
-# All Build rule for target.
-CMakeFiles/RunTests_autogen.dir/all: CMakeFiles/RunTests_autogen_timestamp_deps.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen.dir\build.make CMakeFiles/RunTests_autogen.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen.dir\build.make CMakeFiles/RunTests_autogen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=14 "Built target RunTests_autogen"
-.PHONY : CMakeFiles/RunTests_autogen.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/RunTests_autogen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/RunTests_autogen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
-.PHONY : CMakeFiles/RunTests_autogen.dir/rule
-
-# Convenience name for target.
-RunTests_autogen: CMakeFiles/RunTests_autogen.dir/rule
-.PHONY : RunTests_autogen
-
-# codegen rule for target.
-CMakeFiles/RunTests_autogen.dir/codegen: CMakeFiles/RunTests_autogen_timestamp_deps.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen.dir\build.make CMakeFiles/RunTests_autogen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=14 "Finished codegen for target RunTests_autogen"
-.PHONY : CMakeFiles/RunTests_autogen.dir/codegen
-
-# clean rule for target.
-CMakeFiles/RunTests_autogen.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests_autogen.dir\build.make CMakeFiles/RunTests_autogen.dir/clean
-.PHONY : CMakeFiles/RunTests_autogen.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

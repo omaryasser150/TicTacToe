@@ -1,5 +1,5 @@
 // test_auth.cpp
-#include "../Auth.h"
+#include "Auth.h"
 #include <iostream>
 #include <fstream>
 #include <filesystem>

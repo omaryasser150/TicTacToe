@@ -1,5 +1,5 @@
 // test_history.cpp
-#include "../History.h"
+#include "History.h"
 #include <iostream>
 #include <cassert>
 #include <vector>
