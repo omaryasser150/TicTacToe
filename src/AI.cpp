@@ -82,16 +82,10 @@ std::pair<int, int> AI::findBestMove(Game game) {
     // Second, check for blocking moves (prevent opponent from winning)
     Player opponent = (aiPlayer == Player::X) ? Player::O : Player::X;
     
-    // To check blocking moves, we need to see if the opponent would win
-    // if they could make a move at each available position
     for (const auto& move : availableMoves) {
-        // Create a test board with the opponent's move
-        Game testGame = game;
-        
-        // Temporarily place opponent's piece to test if it would create a win
-        // We need to create a custom test since makeMove uses currentPlayer
+        // Check if opponent would win if they could place at this position
         if (wouldOpponentWin(game, move.first, move.second, opponent)) {
-            return move; // Block this winning move
+            return move; // Block this position
         }
     }
     
@@ -117,7 +111,7 @@ std::pair<int, int> AI::findBestMove(Game game) {
 
 // Helper function to check if opponent would win with a specific move
 bool AI::wouldOpponentWin(const Game& game, int row, int col, Player opponent) {
-    // Create a temporary board with the opponent's move
+    // Create a temporary board with the opponent's move at the given position
     std::vector<std::vector<Player>> testBoard(3, std::vector<Player>(3, Player::NONE));
     
     // Copy current board
@@ -127,27 +121,38 @@ bool AI::wouldOpponentWin(const Game& game, int row, int col, Player opponent) {
         }
     }
     
-    // Add opponent's move
+    // Add opponent's hypothetical move
     testBoard[row][col] = opponent;
     
-    // Check for wins
-    // Check horizontal
-    for (int i = 0; i < 3; i++) {
-        if (testBoard[i][0] == opponent && testBoard[i][1] == opponent && testBoard[i][2] == opponent) {
-            return true;
-        }
+    // Check for wins using the same logic as Game::isWin
+    
+    // Check horizontal (row)
+    if (testBoard[row][0] == opponent && 
+        testBoard[row][1] == opponent && 
+        testBoard[row][2] == opponent) {
+        return true;
     }
     
-    // Check vertical
-    for (int j = 0; j < 3; j++) {
-        if (testBoard[0][j] == opponent && testBoard[1][j] == opponent && testBoard[2][j] == opponent) {
-            return true;
-        }
+    // Check vertical (column)
+    if (testBoard[0][col] == opponent && 
+        testBoard[1][col] == opponent && 
+        testBoard[2][col] == opponent) {
+        return true;
     }
     
-    // Check diagonals
-    if ((testBoard[0][0] == opponent && testBoard[1][1] == opponent && testBoard[2][2] == opponent) ||
-        (testBoard[0][2] == opponent && testBoard[1][1] == opponent && testBoard[2][0] == opponent)) {
+    // Check main diagonal (if position is on main diagonal)
+    if (row == col && 
+        testBoard[0][0] == opponent && 
+        testBoard[1][1] == opponent && 
+        testBoard[2][2] == opponent) {
+        return true;
+    }
+    
+    // Check anti-diagonal (if position is on anti-diagonal) 
+    if (row + col == 2 && 
+        testBoard[0][2] == opponent && 
+        testBoard[1][1] == opponent && 
+        testBoard[2][0] == opponent) {
         return true;
     }
     
