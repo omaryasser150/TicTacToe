@@ -68,6 +68,13 @@ include CMakeFiles/AdvancedTicTacToe.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/AdvancedTicTacToe.dir/flags.make
 
+AdvancedTicTacToe_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/moc.exe
+AdvancedTicTacToe_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/uic.exe
+AdvancedTicTacToe_autogen/timestamp: CMakeFiles/AdvancedTicTacToe.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target AdvancedTicTacToe"
+	C:\msys64\mingw64\bin\cmake.exe -E cmake_autogen C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/AdvancedTicTacToe_autogen.dir/AutogenInfo.json ""
+	C:\msys64\mingw64\bin\cmake.exe -E touch C:/Users/omary/My-Github/TicTacToe/build/AdvancedTicTacToe_autogen/timestamp
+
 CMakeFiles/AdvancedTicTacToe.dir/codegen:
 .PHONY : CMakeFiles/AdvancedTicTacToe.dir/codegen
 
@@ -75,7 +82,7 @@ CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.
 CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj: CMakeFiles/AdvancedTicTacToe.dir/includes_CXX.rsp
 CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj: AdvancedTicTacToe_autogen/mocs_compilation.cpp
 CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj: CMakeFiles/AdvancedTicTacToe.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj -MF CMakeFiles\AdvancedTicTacToe.dir\AdvancedTicTacToe_autogen\mocs_compilation.cpp.obj.d -o CMakeFiles\AdvancedTicTacToe.dir\AdvancedTicTacToe_autogen\mocs_compilation.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\build\AdvancedTicTacToe_autogen\mocs_compilation.cpp
 
 CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.i: cmake_force
@@ -86,14 +93,31 @@ CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\omary\My-Github\TicTacToe\build\AdvancedTicTacToe_autogen\mocs_compilation.cpp -o CMakeFiles\AdvancedTicTacToe.dir\AdvancedTicTacToe_autogen\mocs_compilation.cpp.s
 
+CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj: CMakeFiles/AdvancedTicTacToe.dir/flags.make
+CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj: CMakeFiles/AdvancedTicTacToe.dir/includes_CXX.rsp
+CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj: C:/Users/omary/My-Github/TicTacToe/src/main.cpp
+CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj: CMakeFiles/AdvancedTicTacToe.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj -MF CMakeFiles\AdvancedTicTacToe.dir\src\main.cpp.obj.d -o CMakeFiles\AdvancedTicTacToe.dir\src\main.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\src\main.cpp
+
+CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\omary\My-Github\TicTacToe\src\main.cpp > CMakeFiles\AdvancedTicTacToe.dir\src\main.cpp.i
+
+CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\omary\My-Github\TicTacToe\src\main.cpp -o CMakeFiles\AdvancedTicTacToe.dir\src\main.cpp.s
+
 # Object files for target AdvancedTicTacToe
 AdvancedTicTacToe_OBJECTS = \
-"CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj"
+"CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj" \
+"CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj"
 
 # External object files for target AdvancedTicTacToe
 AdvancedTicTacToe_EXTERNAL_OBJECTS =
 
 AdvancedTicTacToe.exe: CMakeFiles/AdvancedTicTacToe.dir/AdvancedTicTacToe_autogen/mocs_compilation.cpp.obj
+AdvancedTicTacToe.exe: CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj
 AdvancedTicTacToe.exe: CMakeFiles/AdvancedTicTacToe.dir/build.make
 AdvancedTicTacToe.exe: libTicTacToeCore.a
 AdvancedTicTacToe.exe: C:/msys64/mingw64/lib/libQt6Widgets.dll.a
@@ -103,7 +127,7 @@ AdvancedTicTacToe.exe: C:/msys64/mingw64/lib/libQt6EntryPoint.a
 AdvancedTicTacToe.exe: CMakeFiles/AdvancedTicTacToe.dir/linkLibs.rsp
 AdvancedTicTacToe.exe: CMakeFiles/AdvancedTicTacToe.dir/objects1.rsp
 AdvancedTicTacToe.exe: CMakeFiles/AdvancedTicTacToe.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable AdvancedTicTacToe.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable AdvancedTicTacToe.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\AdvancedTicTacToe.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -114,7 +138,7 @@ CMakeFiles/AdvancedTicTacToe.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles\AdvancedTicTacToe.dir\cmake_clean.cmake
 .PHONY : CMakeFiles/AdvancedTicTacToe.dir/clean
 
-CMakeFiles/AdvancedTicTacToe.dir/depend:
+CMakeFiles/AdvancedTicTacToe.dir/depend: AdvancedTicTacToe_autogen/timestamp
 	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\omary\My-Github\TicTacToe C:\Users\omary\My-Github\TicTacToe C:\Users\omary\My-Github\TicTacToe\build C:\Users\omary\My-Github\TicTacToe\build C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles\AdvancedTicTacToe.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/AdvancedTicTacToe.dir/depend
 

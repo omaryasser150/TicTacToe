@@ -8,7 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "" "TicTacToeCore_autogen/timestamp" "custom" "TicTacToeCore_autogen/deps"
   "C:/Users/omary/My-Github/TicTacToe/build/TicTacToeCore_autogen/mocs_compilation.cpp" "CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj" "gcc" "CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj.d"
+  "C:/Users/omary/My-Github/TicTacToe/src/AI.cpp" "CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj" "gcc" "CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj.d"
+  "C:/Users/omary/My-Github/TicTacToe/src/Auth.cpp" "CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj" "gcc" "CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj.d"
+  "C:/Users/omary/My-Github/TicTacToe/src/Game.cpp" "CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj" "gcc" "CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj.d"
+  "C:/Users/omary/My-Github/TicTacToe/src/History.cpp" "CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj" "gcc" "CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

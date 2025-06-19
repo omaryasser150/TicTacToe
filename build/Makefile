@@ -382,6 +382,126 @@ TicTacToeCore_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.s
 .PHONY : TicTacToeCore_autogen/mocs_compilation.cpp.s
 
+src/AI.obj: src/AI.cpp.obj
+.PHONY : src/AI.obj
+
+# target to build an object file
+src/AI.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj
+.PHONY : src/AI.cpp.obj
+
+src/AI.i: src/AI.cpp.i
+.PHONY : src/AI.i
+
+# target to preprocess a source file
+src/AI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/AI.cpp.i
+.PHONY : src/AI.cpp.i
+
+src/AI.s: src/AI.cpp.s
+.PHONY : src/AI.s
+
+# target to generate assembly for a file
+src/AI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/AI.cpp.s
+.PHONY : src/AI.cpp.s
+
+src/Auth.obj: src/Auth.cpp.obj
+.PHONY : src/Auth.obj
+
+# target to build an object file
+src/Auth.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj
+.PHONY : src/Auth.cpp.obj
+
+src/Auth.i: src/Auth.cpp.i
+.PHONY : src/Auth.i
+
+# target to preprocess a source file
+src/Auth.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.i
+.PHONY : src/Auth.cpp.i
+
+src/Auth.s: src/Auth.cpp.s
+.PHONY : src/Auth.s
+
+# target to generate assembly for a file
+src/Auth.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.s
+.PHONY : src/Auth.cpp.s
+
+src/Game.obj: src/Game.cpp.obj
+.PHONY : src/Game.obj
+
+# target to build an object file
+src/Game.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj
+.PHONY : src/Game.cpp.obj
+
+src/Game.i: src/Game.cpp.i
+.PHONY : src/Game.i
+
+# target to preprocess a source file
+src/Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/Game.cpp.i
+.PHONY : src/Game.cpp.i
+
+src/Game.s: src/Game.cpp.s
+.PHONY : src/Game.s
+
+# target to generate assembly for a file
+src/Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/Game.cpp.s
+.PHONY : src/Game.cpp.s
+
+src/History.obj: src/History.cpp.obj
+.PHONY : src/History.obj
+
+# target to build an object file
+src/History.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj
+.PHONY : src/History.cpp.obj
+
+src/History.i: src/History.cpp.i
+.PHONY : src/History.i
+
+# target to preprocess a source file
+src/History.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/History.cpp.i
+.PHONY : src/History.cpp.i
+
+src/History.s: src/History.cpp.s
+.PHONY : src/History.s
+
+# target to generate assembly for a file
+src/History.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/src/History.cpp.s
+.PHONY : src/History.cpp.s
+
+src/main.obj: src/main.cpp.obj
+.PHONY : src/main.obj
+
+# target to build an object file
+src/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.obj
+.PHONY : src/main.cpp.obj
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdvancedTicTacToe.dir\build.make CMakeFiles/AdvancedTicTacToe.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 tests/test_ai.obj: tests/test_ai.cpp.obj
 .PHONY : tests/test_ai.obj
 
@@ -535,6 +655,21 @@ help:
 	@echo ... TicTacToeCore_autogen/mocs_compilation.obj
 	@echo ... TicTacToeCore_autogen/mocs_compilation.i
 	@echo ... TicTacToeCore_autogen/mocs_compilation.s
+	@echo ... src/AI.obj
+	@echo ... src/AI.i
+	@echo ... src/AI.s
+	@echo ... src/Auth.obj
+	@echo ... src/Auth.i
+	@echo ... src/Auth.s
+	@echo ... src/Game.obj
+	@echo ... src/Game.i
+	@echo ... src/Game.s
+	@echo ... src/History.obj
+	@echo ... src/History.i
+	@echo ... src/History.s
+	@echo ... src/main.obj
+	@echo ... src/main.i
+	@echo ... src/main.s
 	@echo ... tests/test_ai.obj
 	@echo ... tests/test_ai.i
 	@echo ... tests/test_ai.s

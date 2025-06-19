@@ -414,6 +414,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"C:/Users/omary/My-Github/TicTacToe/Header",
 		"C:/msys64/mingw64/include/c++/15.1.0",
 		"C:/msys64/mingw64/include/c++/15.1.0/x86_64-w64-mingw32",
 		"C:/msys64/mingw64/include/c++/15.1.0/backward",

@@ -400,7 +400,33 @@
 	"CROSS_CONFIG" : false,
 	"DEP_FILE" : "C:/Users/omary/My-Github/TicTacToe/build/TicTacToeCore_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "TicTacToeCore_autogen/timestamp",
-	"HEADERS" : [],
+	"HEADERS" : 
+	[
+		[
+			"C:/Users/omary/My-Github/TicTacToe/Header/AI.h",
+			"MU",
+			"3ACODNS4DZ/moc_AI.cpp",
+			null
+		],
+		[
+			"C:/Users/omary/My-Github/TicTacToe/Header/Auth.h",
+			"MU",
+			"3ACODNS4DZ/moc_Auth.cpp",
+			null
+		],
+		[
+			"C:/Users/omary/My-Github/TicTacToe/Header/Game.h",
+			"MU",
+			"3ACODNS4DZ/moc_Game.cpp",
+			null
+		],
+		[
+			"C:/Users/omary/My-Github/TicTacToe/Header/History.h",
+			"MU",
+			"3ACODNS4DZ/moc_History.cpp",
+			null
+		]
+	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "C:/Users/omary/My-Github/TicTacToe/build/TicTacToeCore_autogen/include",
 	"MOC_COMPILATION_FILE" : "C:/Users/omary/My-Github/TicTacToe/build/TicTacToeCore_autogen/mocs_compilation.cpp",
@@ -414,6 +440,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"C:/Users/omary/My-Github/TicTacToe/Header",
 		"C:/msys64/mingw64/include/c++/15.1.0",
 		"C:/msys64/mingw64/include/c++/15.1.0/x86_64-w64-mingw32",
 		"C:/msys64/mingw64/include/c++/15.1.0/backward",
@@ -452,7 +479,13 @@
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 9,
 	"SETTINGS_FILE" : "C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore_autogen.dir/AutogenUsed.txt",
-	"SOURCES" : [],
+	"SOURCES" : 
+	[
+		[ "C:/Users/omary/My-Github/TicTacToe/src/AI.cpp", "MU", null ],
+		[ "C:/Users/omary/My-Github/TicTacToe/src/Auth.cpp", "MU", null ],
+		[ "C:/Users/omary/My-Github/TicTacToe/src/Game.cpp", "MU", null ],
+		[ "C:/Users/omary/My-Github/TicTacToe/src/History.cpp", "MU", null ]
+	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : [],

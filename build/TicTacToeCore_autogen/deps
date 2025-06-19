@@ -1,8 +1,16 @@
 TicTacToeCore_autogen/timestamp: \
 	C:/Users/omary/My-Github/TicTacToe/CMakeLists.txt \
+	C:/Users/omary/My-Github/TicTacToe/Header/AI.h \
+	C:/Users/omary/My-Github/TicTacToe/Header/Auth.h \
+	C:/Users/omary/My-Github/TicTacToe/Header/Game.h \
+	C:/Users/omary/My-Github/TicTacToe/Header/History.h \
 	C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/4.0.2/CMakeCXXCompiler.cmake \
 	C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/4.0.2/CMakeRCCompiler.cmake \
 	C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/4.0.2/CMakeSystem.cmake \
+	C:/Users/omary/My-Github/TicTacToe/src/AI.cpp \
+	C:/Users/omary/My-Github/TicTacToe/src/Auth.cpp \
+	C:/Users/omary/My-Github/TicTacToe/src/Game.cpp \
+	C:/Users/omary/My-Github/TicTacToe/src/History.cpp \
 	C:/msys64/mingw64/lib/cmake/Qt6/FindWrapAtomic.cmake \
 	C:/msys64/mingw64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake \
 	C:/msys64/mingw64/lib/cmake/Qt6/Qt6Config.cmake \
