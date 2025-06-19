@@ -7,6 +7,7 @@
 #include <string>
 #include <stdexcept>
 
+class TestRunner; // Forward declaration
 
 #define ASSERT_TRUE(condition) \
     if (!(condition)) { \

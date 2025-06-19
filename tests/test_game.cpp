@@ -5,6 +5,8 @@
 #include <functional>
 #include <string>
 
+class TestRunner; // Forward declaration
+
 #define ASSERT_TRUE(condition) \
     if (!(condition)) { \
         throw std::runtime_error("Assertion failed: " #condition); \
