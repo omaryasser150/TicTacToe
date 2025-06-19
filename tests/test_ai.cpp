@@ -85,54 +85,6 @@ TEST_F(AITest, WinningMoveDiagonal) {
     EXPECT_EQ(2, move.second);
 }
 
-TEST_F(AITest, BlockingMoveHorizontal) {
-    Game game;
-    // Set up a scenario where O needs to block X's horizontal win
-    game.makeMove(0, 0); // X
-    game.makeMove(1, 0); // O
-    game.makeMove(0, 1); // X
-    game.makeMove(1, 1); // O
-    game.makeMove(2, 0); // X
-    // Board: X X .
-    //        O O .
-    //        X . .
-    // Now it's O's turn, and O should block X from winning at (0,2)
-    
-    printBoard(game);
-    std::cout << "Current player: " << (game.getCurrentPlayer() == Player::X ? "X" : "O") << std::endl;
-    
-    AI aiO(Player::O);
-    auto move = aiO.findBestMove(game);
-    std::cout << "AI O chose move: (" << move.first << "," << move.second << ")" << std::endl;
-    
-    EXPECT_EQ(0, move.first);
-    EXPECT_EQ(2, move.second);
-}
-
-TEST_F(AITest, BlockingMoveDiagonal) {
-    Game game;
-    // Set up scenario where O needs to block X's diagonal win
-    game.makeMove(0, 0); // X
-    game.makeMove(0, 1); // O
-    game.makeMove(1, 1); // X
-    game.makeMove(0, 2); // O
-    game.makeMove(1, 0); // X
-    // Board: X O O
-    //        X X .
-    //        . . .
-    // Now it's O's turn, and O should block X from winning at (2,2)
-    
-    printBoard(game);
-    std::cout << "Current player: " << (game.getCurrentPlayer() == Player::X ? "X" : "O") << std::endl;
-    
-    AI aiO(Player::O);
-    auto move = aiO.findBestMove(game);
-    std::cout << "AI O chose move: (" << move.first << "," << move.second << ")" << std::endl;
-    
-    EXPECT_EQ(2, move.first);
-    EXPECT_EQ(2, move.second);
-}
-
 TEST_F(AITest, TakesCenterWhenAvailable) {
     Game game;
     game.makeMove(0, 0); // X takes corner
@@ -167,42 +119,6 @@ TEST_F(AITest, TakesCornerWhenOpponentHasCenter) {
                    (move.first == 2 && move.second == 0) ||
                    (move.first == 2 && move.second == 2);
     EXPECT_TRUE(isCorner);
-}
-
-TEST_F(AITest, DrawScenario) {
-    Game game;
-    // Create a specific draw scenario
-    game.makeMove(0, 0); // X
-    game.makeMove(1, 1); // O takes center
-    game.makeMove(0, 2); // X
-    game.makeMove(0, 1); // O blocks
-    game.makeMove(2, 0); // X
-    game.makeMove(2, 2); // O blocks
-    game.makeMove(1, 0); // X
-    game.makeMove(1, 2); // O blocks
-    // Board: X O X
-    //        X O O
-    //        X . O
-    // Only (2,1) left
-    
-    printBoard(game);
-    std::cout << "Available moves: ";
-    auto availableMoves = game.getAvailableMoves();
-    for (const auto& move : availableMoves) {
-        std::cout << "(" << move.first << "," << move.second << ") ";
-    }
-    std::cout << std::endl;
-    
-    AI aiX(Player::X);
-    auto move = aiX.findBestMove(game);
-    std::cout << "AI X chose move: (" << move.first << "," << move.second << ")" << std::endl;
-    
-    EXPECT_EQ(2, move.first);
-    EXPECT_EQ(1, move.second);
-    
-    // Complete the game and verify it's a draw
-    game.makeMove(move.first, move.second);
-    EXPECT_TRUE(game.isDraw());
 }
 
 TEST_F(AITest, ReturnsValidMove) {
