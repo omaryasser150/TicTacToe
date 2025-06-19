@@ -68,14 +68,36 @@ include CMakeFiles/RunTests.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/RunTests.dir/flags.make
 
+RunTests_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/moc.exe
+RunTests_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/uic.exe
+RunTests_autogen/timestamp: CMakeFiles/RunTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target RunTests"
+	C:\msys64\mingw64\bin\cmake.exe -E cmake_autogen C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/RunTests_autogen.dir/AutogenInfo.json Debug
+	C:\msys64\mingw64\bin\cmake.exe -E touch C:/Users/omary/My-Github/TicTacToe/build/RunTests_autogen/timestamp
+
 CMakeFiles/RunTests.dir/codegen:
 .PHONY : CMakeFiles/RunTests.dir/codegen
+
+CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj: CMakeFiles/RunTests.dir/flags.make
+CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj: CMakeFiles/RunTests.dir/includes_CXX.rsp
+CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj: RunTests_autogen/mocs_compilation.cpp
+CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj: CMakeFiles/RunTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj -MF CMakeFiles\RunTests.dir\RunTests_autogen\mocs_compilation.cpp.obj.d -o CMakeFiles\RunTests.dir\RunTests_autogen\mocs_compilation.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\build\RunTests_autogen\mocs_compilation.cpp
+
+CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\omary\My-Github\TicTacToe\build\RunTests_autogen\mocs_compilation.cpp > CMakeFiles\RunTests.dir\RunTests_autogen\mocs_compilation.cpp.i
+
+CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\omary\My-Github\TicTacToe\build\RunTests_autogen\mocs_compilation.cpp -o CMakeFiles\RunTests.dir\RunTests_autogen\mocs_compilation.cpp.s
 
 CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj: CMakeFiles/RunTests.dir/flags.make
 CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj: CMakeFiles/RunTests.dir/includes_CXX.rsp
 CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj: C:/Users/omary/My-Github/TicTacToe/tests/test_auth.cpp
 CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj: CMakeFiles/RunTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj -MF CMakeFiles\RunTests.dir\tests\test_auth.cpp.obj.d -o CMakeFiles\RunTests.dir\tests\test_auth.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\tests\test_auth.cpp
 
 CMakeFiles/RunTests.dir/tests/test_auth.cpp.i: cmake_force
@@ -90,7 +112,7 @@ CMakeFiles/RunTests.dir/tests/test_game.cpp.obj: CMakeFiles/RunTests.dir/flags.m
 CMakeFiles/RunTests.dir/tests/test_game.cpp.obj: CMakeFiles/RunTests.dir/includes_CXX.rsp
 CMakeFiles/RunTests.dir/tests/test_game.cpp.obj: C:/Users/omary/My-Github/TicTacToe/tests/test_game.cpp
 CMakeFiles/RunTests.dir/tests/test_game.cpp.obj: CMakeFiles/RunTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RunTests.dir/tests/test_game.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RunTests.dir/tests/test_game.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RunTests.dir/tests/test_game.cpp.obj -MF CMakeFiles\RunTests.dir\tests\test_game.cpp.obj.d -o CMakeFiles\RunTests.dir\tests\test_game.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\tests\test_game.cpp
 
 CMakeFiles/RunTests.dir/tests/test_game.cpp.i: cmake_force
@@ -105,7 +127,7 @@ CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj: CMakeFiles/RunTests.dir/flags.mak
 CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj: CMakeFiles/RunTests.dir/includes_CXX.rsp
 CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj: C:/Users/omary/My-Github/TicTacToe/tests/test_ai.cpp
 CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj: CMakeFiles/RunTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj -MF CMakeFiles\RunTests.dir\tests\test_ai.cpp.obj.d -o CMakeFiles\RunTests.dir\tests\test_ai.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\tests\test_ai.cpp
 
 CMakeFiles/RunTests.dir/tests/test_ai.cpp.i: cmake_force
@@ -120,7 +142,7 @@ CMakeFiles/RunTests.dir/tests/test_history.cpp.obj: CMakeFiles/RunTests.dir/flag
 CMakeFiles/RunTests.dir/tests/test_history.cpp.obj: CMakeFiles/RunTests.dir/includes_CXX.rsp
 CMakeFiles/RunTests.dir/tests/test_history.cpp.obj: C:/Users/omary/My-Github/TicTacToe/tests/test_history.cpp
 CMakeFiles/RunTests.dir/tests/test_history.cpp.obj: CMakeFiles/RunTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RunTests.dir/tests/test_history.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RunTests.dir/tests/test_history.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RunTests.dir/tests/test_history.cpp.obj -MF CMakeFiles\RunTests.dir\tests\test_history.cpp.obj.d -o CMakeFiles\RunTests.dir\tests\test_history.cpp.obj -c C:\Users\omary\My-Github\TicTacToe\tests\test_history.cpp
 
 CMakeFiles/RunTests.dir/tests/test_history.cpp.i: cmake_force
@@ -133,6 +155,7 @@ CMakeFiles/RunTests.dir/tests/test_history.cpp.s: cmake_force
 
 # Object files for target RunTests
 RunTests_OBJECTS = \
+"CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj" \
 "CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj" \
 "CMakeFiles/RunTests.dir/tests/test_game.cpp.obj" \
 "CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj" \
@@ -141,18 +164,21 @@ RunTests_OBJECTS = \
 # External object files for target RunTests
 RunTests_EXTERNAL_OBJECTS =
 
+RunTests.exe: CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj
 RunTests.exe: CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj
 RunTests.exe: CMakeFiles/RunTests.dir/tests/test_game.cpp.obj
 RunTests.exe: CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj
 RunTests.exe: CMakeFiles/RunTests.dir/tests/test_history.cpp.obj
 RunTests.exe: CMakeFiles/RunTests.dir/build.make
 RunTests.exe: libTicTacToeCore.a
+RunTests.exe: C:/msys64/mingw64/lib/libQt6Sql.dll.a
+RunTests.exe: C:/msys64/mingw64/lib/libQt6Core.dll.a
 RunTests.exe: C:/msys64/mingw64/lib/libgtest_main.dll.a
 RunTests.exe: C:/msys64/mingw64/lib/libgtest.dll.a
 RunTests.exe: CMakeFiles/RunTests.dir/linkLibs.rsp
 RunTests.exe: CMakeFiles/RunTests.dir/objects1.rsp
 RunTests.exe: CMakeFiles/RunTests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable RunTests.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable RunTests.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\RunTests.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -163,7 +189,7 @@ CMakeFiles/RunTests.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles\RunTests.dir\cmake_clean.cmake
 .PHONY : CMakeFiles/RunTests.dir/clean
 
-CMakeFiles/RunTests.dir/depend:
+CMakeFiles/RunTests.dir/depend: RunTests_autogen/timestamp
 	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\omary\My-Github\TicTacToe C:\Users\omary\My-Github\TicTacToe C:\Users\omary\My-Github\TicTacToe\build C:\Users\omary\My-Github\TicTacToe\build C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles\RunTests.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/RunTests.dir/depend
 

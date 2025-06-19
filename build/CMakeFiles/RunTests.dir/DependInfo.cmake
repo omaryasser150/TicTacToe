@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "" "RunTests_autogen/timestamp" "custom" "RunTests_autogen/deps"
+  "C:/Users/omary/My-Github/TicTacToe/build/RunTests_autogen/mocs_compilation.cpp" "CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj" "gcc" "CMakeFiles/RunTests.dir/RunTests_autogen/mocs_compilation.cpp.obj.d"
   "C:/Users/omary/My-Github/TicTacToe/tests/test_ai.cpp" "CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj" "gcc" "CMakeFiles/RunTests.dir/tests/test_ai.cpp.obj.d"
   "C:/Users/omary/My-Github/TicTacToe/tests/test_auth.cpp" "CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj" "gcc" "CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj.d"
   "C:/Users/omary/My-Github/TicTacToe/tests/test_game.cpp" "CMakeFiles/RunTests.dir/tests/test_game.cpp.obj" "gcc" "CMakeFiles/RunTests.dir/tests/test_game.cpp.obj.d"
