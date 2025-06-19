@@ -1,0 +1,1 @@
+-I"C:/Users/omary/My-Github/TicTacToe/external/googletest/googlemock/include" -I"C:/Users/omary/My-Github/TicTacToe/external/googletest/googlemock" -isystem "C:/Users/omary/My-Github/TicTacToe/external/googletest/googletest/include" -isystem "C:/Users/omary/My-Github/TicTacToe/external/googletest/googletest"
