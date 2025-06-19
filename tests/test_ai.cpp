@@ -181,7 +181,7 @@ public:
         
         AI aiX(Player::X);
         auto move = aiX.findBestMove(game);
-        assert_test(move.first == 2 && move1.second == 1, "AI makes final move in draw scenario");
+        assert_test(move.first == 2 && move.second == 1, "AI makes final move in draw scenario");
         
         // Complete the game and verify it's a draw
         game.makeMove(move.first, move.second);
