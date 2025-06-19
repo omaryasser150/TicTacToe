@@ -37,9 +37,11 @@ target_include_directories(TicTacToeCore PUBLIC Header)
 option(BUILD_TESTS "Build test executable" ON)
 
 if(BUILD_TESTS)
+    # Find Google Test
+    find_package(GTest REQUIRED)
+    
     # Test sources (updated paths)
     set(TEST_SOURCES
-	tests/test_main.cpp
         tests/test_auth.cpp
         tests/test_game.cpp
         tests/test_ai.cpp
@@ -53,12 +55,18 @@ if(BUILD_TESTS)
     target_include_directories(RunTests PRIVATE Header)
     
     # Link libraries to test executable
-    target_link_libraries(RunTests TicTacToeCore)
+    target_link_libraries(RunTests TicTacToeCore GTest::GTest GTest::Main)
     
     # Set test executable properties
     set_target_properties(RunTests PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
     )
+    
+    # Enable testing
+    enable_testing()
+    
+    # Add test to CTest
+    add_test(NAME AllTests COMMAND RunTests)
     
     # Add custom target to run tests
     add_custom_target(run_tests

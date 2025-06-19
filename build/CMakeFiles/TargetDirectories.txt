@@ -1,5 +1,0 @@
-C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore.dir
-C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/RunTests.dir
-C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/run_tests.dir
-C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/edit_cache.dir
-C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/rebuild_cache.dir
