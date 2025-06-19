@@ -15,7 +15,7 @@ int AI::minimax(Game game, bool isMaximizing, int alpha, int beta, int depth) {
         return 0; // Draw
     }
     
-    // Depth limit to prevent infinite recursion (shouldn't be needed for tic-tac-toe but good practice)
+    // Depth limit to prevent infinite recursion
     if (depth > 9) {
         return 0;
     }
@@ -64,31 +64,19 @@ std::pair<int, int> AI::findBestMove(Game game) {
         return availableMoves[0];
     }
     
-    // Check if it's the AI's turn based on current player
-    bool isAITurn = (game.getCurrentPlayer() == aiPlayer);
-    
     std::pair<int, int> bestMove = availableMoves[0];
-    int bestValue = isAITurn ? INT_MIN : INT_MAX;
+    int bestValue = INT_MIN;
     
     for (const auto& move : availableMoves) {
         Game tempGame = game;
         tempGame.makeMove(move.first, move.second);
         
-        // The next call should be the opposite of current turn
-        int moveValue = minimax(tempGame, !isAITurn, INT_MIN, INT_MAX, 0);
+        // After making the move, it's the opponent's turn, so we minimize
+        int moveValue = minimax(tempGame, false, INT_MIN, INT_MAX, 0);
         
-        if (isAITurn) {
-            // AI wants to maximize
-            if (moveValue > bestValue) {
-                bestValue = moveValue;
-                bestMove = move;
-            }
-        } else {
-            // AI wants to minimize (when it's opponent's turn)
-            if (moveValue < bestValue) {
-                bestValue = moveValue;
-                bestMove = move;
-            }
+        if (moveValue > bestValue) {
+            bestValue = moveValue;
+            bestMove = move;
         }
     }
     

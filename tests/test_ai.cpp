@@ -87,6 +87,7 @@ TEST_F(AITest, WinningMoveDiagonal) {
 
 TEST_F(AITest, BlockingMoveHorizontal) {
     Game game;
+    // Set up a scenario where O needs to block X's horizontal win
     game.makeMove(0, 0); // X
     game.makeMove(1, 0); // O
     game.makeMove(0, 1); // X
@@ -95,16 +96,22 @@ TEST_F(AITest, BlockingMoveHorizontal) {
     // Board: X X .
     //        O O .
     //        X . .
-    // O should play (0,2) to block X's win
+    // Now it's O's turn, and O should block X from winning at (0,2)
+    
+    printBoard(game);
+    std::cout << "Current player: " << (game.getCurrentPlayer() == Player::X ? "X" : "O") << std::endl;
     
     AI aiO(Player::O);
     auto move = aiO.findBestMove(game);
+    std::cout << "AI O chose move: (" << move.first << "," << move.second << ")" << std::endl;
+    
     EXPECT_EQ(0, move.first);
     EXPECT_EQ(2, move.second);
 }
 
 TEST_F(AITest, BlockingMoveDiagonal) {
     Game game;
+    // Set up scenario where O needs to block X's diagonal win
     game.makeMove(0, 0); // X
     game.makeMove(0, 1); // O
     game.makeMove(1, 1); // X
@@ -113,25 +120,34 @@ TEST_F(AITest, BlockingMoveDiagonal) {
     // Board: X O O
     //        X X .
     //        . . .
-    // O should play (2,2) to block X's diagonal win
+    // Now it's O's turn, and O should block X from winning at (2,2)
+    
+    printBoard(game);
+    std::cout << "Current player: " << (game.getCurrentPlayer() == Player::X ? "X" : "O") << std::endl;
     
     AI aiO(Player::O);
     auto move = aiO.findBestMove(game);
+    std::cout << "AI O chose move: (" << move.first << "," << move.second << ")" << std::endl;
+    
     EXPECT_EQ(2, move.first);
     EXPECT_EQ(2, move.second);
 }
 
 TEST_F(AITest, TakesCenterWhenAvailable) {
     Game game;
-    game.makeMove(0, 0); // X
-    game.makeMove(2, 2); // O
+    game.makeMove(0, 0); // X takes corner
     // Board: X . .
     //        . . .
-    //        . . O
-    // X should prefer center (1,1) as it's optimal
+    //        . . .
+    // Now it's O's turn, O should take center (1,1)
     
-    AI aiX(Player::X);
-    auto move = aiX.findBestMove(game);
+    printBoard(game);
+    std::cout << "Current player: " << (game.getCurrentPlayer() == Player::X ? "X" : "O") << std::endl;
+    
+    AI aiO(Player::O);
+    auto move = aiO.findBestMove(game);
+    std::cout << "AI O chose move: (" << move.first << "," << move.second << ")" << std::endl;
+    
     EXPECT_EQ(1, move.first);
     EXPECT_EQ(1, move.second);
 }
@@ -153,24 +169,34 @@ TEST_F(AITest, TakesCornerWhenOpponentHasCenter) {
     EXPECT_TRUE(isCorner);
 }
 
-// Updated DrawScenario test with more flexible assertion
 TEST_F(AITest, DrawScenario) {
     Game game;
-    game.makeMove(1, 1); // X takes center
-    game.makeMove(0, 0); // O takes corner
-    game.makeMove(2, 2); // X takes opposite corner
-    game.makeMove(0, 2); // O takes another corner
-    game.makeMove(0, 1); // X blocks
-    game.makeMove(2, 0); // O takes last corner
-    game.makeMove(1, 0); // X blocks
+    // Create a specific draw scenario
+    game.makeMove(0, 0); // X
+    game.makeMove(1, 1); // O takes center
+    game.makeMove(0, 2); // X
+    game.makeMove(0, 1); // O blocks
+    game.makeMove(2, 0); // X
+    game.makeMove(2, 2); // O blocks
+    game.makeMove(1, 0); // X
     game.makeMove(1, 2); // O blocks
-    // Board: O X O
-    //        X X O
-    //        O . X
-    // Only (2,1) left, should lead to a draw
+    // Board: X O X
+    //        X O O
+    //        X . O
+    // Only (2,1) left
+    
+    printBoard(game);
+    std::cout << "Available moves: ";
+    auto availableMoves = game.getAvailableMoves();
+    for (const auto& move : availableMoves) {
+        std::cout << "(" << move.first << "," << move.second << ") ";
+    }
+    std::cout << std::endl;
     
     AI aiX(Player::X);
     auto move = aiX.findBestMove(game);
+    std::cout << "AI X chose move: (" << move.first << "," << move.second << ")" << std::endl;
+    
     EXPECT_EQ(2, move.first);
     EXPECT_EQ(1, move.second);
     
@@ -254,7 +280,7 @@ TEST_F(AITest, Performance) {
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
     
     std::cout << "AI calculation time: " << duration.count() << "ms" << std::endl;
-    EXPECT_LT(duration.count(), 1000); // Less than 1 second (more reasonable for minimax)
+    EXPECT_LT(duration.count(), 1000); // Less than 1 second
     EXPECT_GE(move.first, 0);
     EXPECT_LT(move.first, 3);
     EXPECT_GE(move.second, 0);
