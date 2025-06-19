@@ -12,10 +12,11 @@ int AI::minimax(Game game, bool isMax, int alpha, int beta) {
     if (game.isDraw()) return 0;
 
     int bestScore = isMax ? std::numeric_limits<int>::min() : std::numeric_limits<int>::max();
+    Player currentPlayer = isMax ? aiPlayer : (aiPlayer == Player::X ? Player::O : Player::X);
 
     for (auto move : game.getAvailableMoves()) {
         Game temp = game;
-        temp.makeMove(move.first, move.second);
+        temp.makeMove(move.first, move.second, currentPlayer); // ← use manual player here
         int score = minimax(temp, !isMax, alpha, beta);
 
         if (isMax) {
@@ -26,11 +27,12 @@ int AI::minimax(Game game, bool isMax, int alpha, int beta) {
             beta = std::min(beta, bestScore);
         }
 
-        if (beta <= alpha) break;  // pruning
+        if (beta <= alpha) break;
     }
 
     return bestScore;
 }
+
 
 std::pair<int, int> AI::findBestMove(Game game) {
     int bestVal = std::numeric_limits<int>::min();
@@ -38,7 +40,7 @@ std::pair<int, int> AI::findBestMove(Game game) {
 
     for (auto move : game.getAvailableMoves()) {
         Game temp = game;
-        temp.makeMove(move.first, move.second);
+        temp.makeMove(move.first, move.second, aiPlayer);  // ← fix: use aiPlayer explicitly
         int moveVal = minimax(temp, false, std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
 
         if (moveVal > bestVal) {
@@ -49,3 +51,4 @@ std::pair<int, int> AI::findBestMove(Game game) {
 
     return bestMove;
 }
+
