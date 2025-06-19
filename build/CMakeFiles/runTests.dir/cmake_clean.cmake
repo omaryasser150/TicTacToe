@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/RunTests.dir/tests/test_game.cpp.obj.d"
   "CMakeFiles/RunTests.dir/tests/test_history.cpp.obj"
   "CMakeFiles/RunTests.dir/tests/test_history.cpp.obj.d"
+  "CMakeFiles/RunTests.dir/tests/test_main.cpp.obj"
+  "CMakeFiles/RunTests.dir/tests/test_main.cpp.obj.d"
   "RunTests.exe"
   "RunTests.exe.manifest"
   "RunTests.pdb"

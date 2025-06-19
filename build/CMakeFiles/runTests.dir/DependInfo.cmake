@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/omary/My-Github/TicTacToe/tests/test_auth.cpp" "CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj" "gcc" "CMakeFiles/RunTests.dir/tests/test_auth.cpp.obj.d"
   "C:/Users/omary/My-Github/TicTacToe/tests/test_game.cpp" "CMakeFiles/RunTests.dir/tests/test_game.cpp.obj" "gcc" "CMakeFiles/RunTests.dir/tests/test_game.cpp.obj.d"
   "C:/Users/omary/My-Github/TicTacToe/tests/test_history.cpp" "CMakeFiles/RunTests.dir/tests/test_history.cpp.obj" "gcc" "CMakeFiles/RunTests.dir/tests/test_history.cpp.obj.d"
+  "C:/Users/omary/My-Github/TicTacToe/tests/test_main.cpp" "CMakeFiles/RunTests.dir/tests/test_main.cpp.obj" "gcc" "CMakeFiles/RunTests.dir/tests/test_main.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

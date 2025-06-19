@@ -2,8 +2,10 @@
 #include "Game.h"
 #include <iostream>
 
-// External declarations from test_main.cpp
+#include <stdexcept>
+
 extern class TestRunner testRunner;
+
 #define ASSERT_TRUE(condition) \
     if (!(condition)) { \
         throw std::runtime_error("Assertion failed: " #condition); \

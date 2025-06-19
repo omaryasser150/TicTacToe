@@ -88,7 +88,7 @@ clean: CMakeFiles/run_tests.dir/clean
 CMakeFiles/TicTacToeCore.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=6,7,8,9,10 "Built target TicTacToeCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=7,8,9,10,11 "Built target TicTacToeCore"
 .PHONY : CMakeFiles/TicTacToeCore.dir/all
 
 # Build rule for subdir invocation for target.
@@ -105,7 +105,7 @@ TicTacToeCore: CMakeFiles/TicTacToeCore.dir/rule
 # codegen rule for target.
 CMakeFiles/TicTacToeCore.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToeCore.dir\build.make CMakeFiles/TicTacToeCore.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=6,7,8,9,10 "Finished codegen for target TicTacToeCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=7,8,9,10,11 "Finished codegen for target TicTacToeCore"
 .PHONY : CMakeFiles/TicTacToeCore.dir/codegen
 
 # clean rule for target.
@@ -120,12 +120,12 @@ CMakeFiles/TicTacToeCore.dir/clean:
 CMakeFiles/RunTests.dir/all: CMakeFiles/TicTacToeCore.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=1,2,3,4,5 "Built target RunTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=1,2,3,4,5,6 "Built target RunTests"
 .PHONY : CMakeFiles/RunTests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/RunTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/RunTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
 .PHONY : CMakeFiles/RunTests.dir/rule
@@ -137,7 +137,7 @@ RunTests: CMakeFiles/RunTests.dir/rule
 # codegen rule for target.
 CMakeFiles/RunTests.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=1,2,3,4,5 "Finished codegen for target RunTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=1,2,3,4,5,6 "Finished codegen for target RunTests"
 .PHONY : CMakeFiles/RunTests.dir/codegen
 
 # clean rule for target.
@@ -152,12 +152,12 @@ CMakeFiles/RunTests.dir/clean:
 CMakeFiles/run_tests.dir/all: CMakeFiles/RunTests.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\run_tests.dir\build.make CMakeFiles/run_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\run_tests.dir\build.make CMakeFiles/run_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=11 "Built target run_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=12 "Built target run_tests"
 .PHONY : CMakeFiles/run_tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/run_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/run_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles 0
 .PHONY : CMakeFiles/run_tests.dir/rule
@@ -169,7 +169,7 @@ run_tests: CMakeFiles/run_tests.dir/rule
 # codegen rule for target.
 CMakeFiles/run_tests.dir/codegen: CMakeFiles/RunTests.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\run_tests.dir\build.make CMakeFiles/run_tests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=11 "Finished codegen for target run_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\omary\My-Github\TicTacToe\build\CMakeFiles --progress-num=12 "Finished codegen for target run_tests"
 .PHONY : CMakeFiles/run_tests.dir/codegen
 
 # clean rule for target.
