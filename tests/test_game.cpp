@@ -5,11 +5,6 @@
 #include <functional>
 #include <string>
 
-class TestRunner {
-public:
-    void addTest(const std::string& name, std::function<void()> test);
-};
-
 #define ASSERT_TRUE(condition) \
     if (!(condition)) { \
         throw std::runtime_error("Assertion failed: " #condition); \
