@@ -20,23 +20,12 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 endif()
 
-# Core library sources (updated paths)
-set(CORE_SOURCES
+# All source files
+set(SOURCES
     src/Auth.cpp
     src/Game.cpp
     src/AI.cpp
     src/History.cpp
-)
-
-set(CORE_HEADERS
-    Header/Auth.h
-    Header/Game.h
-    Header/AI.h
-    Header/History.h
-)
-
-# GUI sources
-set(GUI_SOURCES
     src/GameModeWindow.cpp
     src/LoginWindow.cpp
     src/MainWindow.cpp
@@ -46,13 +35,37 @@ set(GUI_SOURCES
     src/main.cpp
 )
 
-set(GUI_HEADERS
+# All header files
+set(HEADERS
+    Header/Auth.h
+    Header/Game.h
+    Header/AI.h
+    Header/History.h
     Header/GameModeWindow.h
     Header/LoginWindow.h
     Header/MainWindow.h
     Header/PlayerVsPlayerWindow.h
     Header/RegisterWindow.h
     Header/StartupWindow.h
+)
+
+# Documentation files
+set(DOCUMENTATION_FILES
+    Documents/SRS.docx
+    Documents/SDS.docx
+    Documents/Testing_Documentation.docx
+)
+
+# Add documentation files to the project (they will appear in IDEs)
+add_custom_target(Documentation
+    SOURCES ${DOCUMENTATION_FILES}
+    COMMENT "Documentation files"
+)
+
+# Install documentation files
+install(FILES ${DOCUMENTATION_FILES}
+    DESTINATION doc
+    COMPONENT documentation
 )
 
 # Create core library
@@ -102,7 +115,7 @@ if(BUILD_TESTS)
         target_include_directories(RunTests PRIVATE Header)
         
         # Link libraries to test executable
-        target_link_libraries(RunTests TicTacToeCore GTest::GTest GTest::Main)
+        target_link_libraries(RunTests TicTacToe GTest::GTest GTest::Main)
         
         # Set test executable properties
         set_target_properties(RunTests PROPERTIES
@@ -138,3 +151,4 @@ message(STATUS "Building Advanced Tic Tac Toe ${CMAKE_PROJECT_VERSION}")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "C++ standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "Build tests: ${BUILD_TESTS}")
+message(STATUS "Documentation files: ${DOCUMENTATION_FILES}")
