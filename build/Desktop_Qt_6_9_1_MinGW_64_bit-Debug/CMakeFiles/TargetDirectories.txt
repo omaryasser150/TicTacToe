@@ -1,0 +1,13 @@
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/TicTacToeCore.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/TicTacToe.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/RunTests.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/run_tests.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/test.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/TicTacToeCore_autogen.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/TicTacToe_autogen_timestamp_deps.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/TicTacToe_autogen.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/RunTests_autogen_timestamp_deps.dir
+C:/Users/omary/My-Github/TicTacToe/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/RunTests_autogen.dir

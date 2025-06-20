@@ -1,3 +1,0 @@
-C:\msys64\mingw64\bin\cmake.exe -E rm -f CMakeFiles\AdvancedTicTacToe.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\AdvancedTicTacToe.dir/objects.a @CMakeFiles\AdvancedTicTacToe.dir\objects1.rsp
-C:\msys64\mingw64\bin\c++.exe  -Wall -Wextra -pedantic -g -mwindows -Wl,--whole-archive CMakeFiles\AdvancedTicTacToe.dir/objects.a -Wl,--no-whole-archive -o AdvancedTicTacToe.exe -Wl,--out-implib,libAdvancedTicTacToe.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\AdvancedTicTacToe.dir\linkLibs.rsp
