@@ -135,7 +135,7 @@ void MainWindow::applyStyles()
         }
 
         #statusLabel {
-            font-size: 18px;
+            font-size: 10px;
             font-weight: bold;
             color: #e74c3c;
             background: rgba(231, 76, 60, 0.1);
