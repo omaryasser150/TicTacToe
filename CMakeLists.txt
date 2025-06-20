@@ -20,12 +20,23 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 endif()
 
-# All source files
-set(SOURCES
+# Core library sources (updated paths)
+set(CORE_SOURCES
     src/Auth.cpp
     src/Game.cpp
     src/AI.cpp
     src/History.cpp
+)
+
+set(CORE_HEADERS
+    Header/Auth.h
+    Header/Game.h
+    Header/AI.h
+    Header/History.h
+)
+
+# GUI sources
+set(GUI_SOURCES
     src/GameModeWindow.cpp
     src/LoginWindow.cpp
     src/MainWindow.cpp
@@ -35,12 +46,7 @@ set(SOURCES
     src/main.cpp
 )
 
-# All header files
-set(HEADERS
-    Header/Auth.h
-    Header/Game.h
-    Header/AI.h
-    Header/History.h
+set(GUI_HEADERS
     Header/GameModeWindow.h
     Header/LoginWindow.h
     Header/MainWindow.h
@@ -115,7 +121,7 @@ if(BUILD_TESTS)
         target_include_directories(RunTests PRIVATE Header)
         
         # Link libraries to test executable
-        target_link_libraries(RunTests TicTacToe GTest::GTest GTest::Main)
+        target_link_libraries(RunTests TicTacToeCore GTest::GTest GTest::Main)
         
         # Set test executable properties
         set_target_properties(RunTests PROPERTIES
