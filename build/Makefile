@@ -687,6 +687,30 @@ tests/test_history.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_history.cpp.s
 .PHONY : tests/test_history.cpp.s
 
+tests/test_integration.obj: tests/test_integration.cpp.obj
+.PHONY : tests/test_integration.obj
+
+# target to build an object file
+tests/test_integration.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_integration.cpp.obj
+.PHONY : tests/test_integration.cpp.obj
+
+tests/test_integration.i: tests/test_integration.cpp.i
+.PHONY : tests/test_integration.i
+
+# target to preprocess a source file
+tests/test_integration.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_integration.cpp.i
+.PHONY : tests/test_integration.cpp.i
+
+tests/test_integration.s: tests/test_integration.cpp.s
+.PHONY : tests/test_integration.s
+
+# target to generate assembly for a file
+tests/test_integration.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunTests.dir\build.make CMakeFiles/RunTests.dir/tests/test_integration.cpp.s
+.PHONY : tests/test_integration.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -760,6 +784,9 @@ help:
 	@echo ... tests/test_history.obj
 	@echo ... tests/test_history.i
 	@echo ... tests/test_history.s
+	@echo ... tests/test_integration.obj
+	@echo ... tests/test_integration.i
+	@echo ... tests/test_integration.s
 .PHONY : help
 
 

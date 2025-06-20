@@ -7,6 +7,7 @@ RunTests_autogen/timestamp: \
 	C:/Users/omary/My-Github/TicTacToe/tests/test_auth.cpp \
 	C:/Users/omary/My-Github/TicTacToe/tests/test_game.cpp \
 	C:/Users/omary/My-Github/TicTacToe/tests/test_history.cpp \
+	C:/Users/omary/My-Github/TicTacToe/tests/test_integration.cpp \
 	C:/msys64/mingw64/lib/cmake/GTest/GTestConfig.cmake \
 	C:/msys64/mingw64/lib/cmake/GTest/GTestConfigVersion.cmake \
 	C:/msys64/mingw64/lib/cmake/GTest/GTestTargets-release.cmake \
