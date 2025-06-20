@@ -1,0 +1,8 @@
+set(__QT_DEPLOY_TARGET_TicTacToeCore_FILE C:/Users/omary/My-Github/TicTacToe/build/libTicTacToeCore.a)
+set(__QT_DEPLOY_TARGET_TicTacToeCore_TYPE STATIC_LIBRARY)
+set(__QT_DEPLOY_TARGET_TicTacToe_FILE C:/Users/omary/My-Github/TicTacToe/build/TicTacToe.exe)
+set(__QT_DEPLOY_TARGET_TicTacToe_TYPE EXECUTABLE)
+set(__QT_DEPLOY_TARGET_TicTacToe_RUNTIME_DLLS C:/msys64/mingw64/bin/Qt6Widgets.dll;C:/msys64/mingw64/bin/Qt6Gui.dll;C:/msys64/mingw64/bin/Qt6Core.dll)
+set(__QT_DEPLOY_TARGET_RunTests_FILE C:/Users/omary/My-Github/TicTacToe/build/RunTests.exe)
+set(__QT_DEPLOY_TARGET_RunTests_TYPE EXECUTABLE)
+set(__QT_DEPLOY_TARGET_RunTests_RUNTIME_DLLS C:/msys64/mingw64/bin/Qt6Widgets.dll;C:/msys64/mingw64/bin/Qt6Gui.dll;C:/msys64/mingw64/bin/Qt6Core.dll;C:/msys64/mingw64/bin/libgtest_main.dll;C:/msys64/mingw64/bin/libgtest.dll)

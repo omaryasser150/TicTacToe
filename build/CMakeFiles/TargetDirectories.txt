@@ -1,0 +1,13 @@
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToe.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/RunTests.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/run_tests.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/test.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/edit_cache.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/rebuild_cache.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore_autogen.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToe_autogen_timestamp_deps.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToe_autogen.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/RunTests_autogen_timestamp_deps.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/RunTests_autogen.dir

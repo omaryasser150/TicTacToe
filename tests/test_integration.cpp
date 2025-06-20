@@ -1,300 +1,621 @@
 #include <gtest/gtest.h>
+#include "Auth.h"
 #include "Game.h"
 #include "AI.h"
-#include "Auth.h"
 #include "History.h"
 #include <filesystem>
-#include <thread>
 #include <chrono>
+#include <iostream>
+#include <sstream>
 
 class IntegrationTest : public ::testing::Test {
 protected:
+    std::vector<std::string> testFiles; // Track test files for cleanup
+
     void SetUp() override {
-        // Clean up any existing test files
-        std::filesystem::remove("test_integration_users.db");
-        std::filesystem::remove("history_testuser.txt");
-        std::filesystem::remove("history_player1.txt");
-        std::filesystem::remove("history_player2.txt");
+        // Setup for each test
+        cleanupTestFiles();
     }
     
     void TearDown() override {
         // Clean up test files
-        std::filesystem::remove("test_integration_users.db");
-        std::filesystem::remove("history_testuser.txt");
-        std::filesystem::remove("history_player1.txt");
-        std::filesystem::remove("history_player2.txt");
+        cleanupTestFiles();
+    }
+
+    void addTestFile(const std::string& filename) {
+        testFiles.push_back(filename);
+    }
+
+    void cleanupTestFiles() {
+        // Clean up specific test files and any that might have been created
+        std::vector<std::string> filesToRemove = {
+            "integration_test_users.db",
+            "test_integration_users.db",
+            "game_session_users.db",
+            "tournament_users.db",
+            "history_alice.txt",
+            "history_bob.txt",
+            "history_testplayer1.txt",
+            "history_testplayer2.txt",
+            "history_player1.txt",
+            "history_player2.txt",
+            "history_integration_user.txt"
+        };
+        
+        // Add tracked files
+        filesToRemove.insert(filesToRemove.end(), testFiles.begin(), testFiles.end());
+        
+        for (const auto& filename : filesToRemove) {
+            if (std::filesystem::exists(filename)) {
+                std::filesystem::remove(filename);
+            }
+        }
+        testFiles.clear();
+    }
+
+    std::string getCurrentTimestamp() {
+        auto now = std::chrono::system_clock::now();
+        auto time_t = std::chrono::system_clock::to_time_t(now);
+        std::stringstream ss;
+        ss << std::put_time(std::localtime(&time_t), "%Y-%m-%d %H:%M:%S");
+        return ss.str();
+    }
+
+    void printGameBoard(const Game& game) {
+        std::cout << "Current board state:" << std::endl;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Player p = game.at(i, j);
+                char c = (p == Player::X) ? 'X' : (p == Player::O) ? 'O' : '.';
+                std::cout << c << " ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
     }
 };
 
-// Test 1: Complete User Workflow - Login -> Play Game -> Save History
-TEST_F(IntegrationTest, CompleteUserGameWorkflow) {
-    // Step 1: User Registration and Login
-    Auth auth("test_integration_users.db");
-    ASSERT_TRUE(auth.registerUser("testuser", "password123"));
-    ASSERT_TRUE(auth.loginUser("testuser", "password123"));
+TEST_F(IntegrationTest, CompleteUserSession) {
+    // Test a complete user session: register, login, play games, save history
+    std::string dbFile = "integration_test_users.db";
+    std::string username = "integration_user";
+    std::string password = "testpass123";
     
-    // Step 2: Initialize Game and History
+    addTestFile(dbFile);
+    addTestFile("history_" + username + ".txt");
+    
+    // 1. User Registration
+    Auth auth(dbFile);
+    auth.clearAllUsers();
+    ASSERT_TRUE(auth.registerUser(username, password));
+    
+    // 2. User Login
+    ASSERT_TRUE(auth.loginUser(username, password));
+    
+    // 3. Initialize game components
     Game game;
-    History history("testuser");
-    AI ai(Player::O); // AI plays as O
+    AI ai(Player::O);
+    History history(username);
     
-    // Step 3: Play a complete game (User vs AI)
-    int moveCount = 0;
-    std::string gameTimestamp = "2024-06-20 15:30:00";
+    // 4. Play a complete game (Human vs AI)
+    std::cout << "=== Playing Human vs AI Game ===" << std::endl;
     
+    // Human (X) makes first move
+    ASSERT_TRUE(game.makeMove(1, 1)); // Take center
+    printGameBoard(game);
+    
+    int moveCount = 1;
     while (game.getWinner() == Player::NONE && !game.isDraw() && moveCount < 9) {
-        if (game.getCurrentPlayer() == Player::X) {
-            // Simulate user move (X)
-            auto availableMoves = game.getAvailableMoves();
-            ASSERT_FALSE(availableMoves.empty());
-            auto userMove = availableMoves[0]; // Take first available move
-            ASSERT_TRUE(game.makeMove(userMove.first, userMove.second));
-        } else {
-            // AI move (O)
+        if (game.getCurrentPlayer() == Player::O) {
+            // AI's turn
             auto aiMove = ai.findBestMove(game);
+            std::cout << "AI plays: (" << aiMove.first << "," << aiMove.second << ")" << std::endl;
             ASSERT_TRUE(game.makeMove(aiMove.first, aiMove.second));
+            printGameBoard(game);
+        } else {
+            // Simulate human moves for testing
+            auto availableMoves = game.getAvailableMoves();
+            if (!availableMoves.empty()) {
+                auto humanMove = availableMoves[0]; // Take first available
+                std::cout << "Human plays: (" << humanMove.first << "," << humanMove.second << ")" << std::endl;
+                ASSERT_TRUE(game.makeMove(humanMove.first, humanMove.second));
+                printGameBoard(game);
+            }
         }
         moveCount++;
     }
     
-    // Step 4: Determine and save game result
+    // 5. Determine and save game result
     std::string result;
     if (game.getWinner() == Player::X) {
         result = "Win";
+        std::cout << "Human wins!" << std::endl;
     } else if (game.getWinner() == Player::O) {
-        result = "Loss vs AI";
+        result = "Loss";
+        std::cout << "AI wins!" << std::endl;
     } else {
-        result = "Draw vs AI";
+        result = "Draw";
+        std::cout << "Game is a draw!" << std::endl;
     }
     
-    GameResult gameResult = {gameTimestamp, result};
+    // 6. Save result to history
+    GameResult gameResult = {getCurrentTimestamp(), result};
     history.saveResult(gameResult);
     
-    // Step 5: Verify the complete workflow
-    // Check game completed properly
-    EXPECT_TRUE(game.getWinner() != Player::NONE || game.isDraw());
-    
-    // Check history was saved
+    // 7. Verify history was saved
     auto loadedHistory = history.loadHistory();
     EXPECT_EQ(1, loadedHistory.size());
-    EXPECT_EQ(gameTimestamp, loadedHistory[0].date);
-    EXPECT_EQ(result, loadedHistory[0].result);
+    if (!loadedHistory.empty()) {
+        EXPECT_EQ(result, loadedHistory[0].result);
+    }
     
-    // Verify user is still authenticated (session persistence)
-    EXPECT_TRUE(auth.loginUser("testuser", "password123"));
+    std::cout << "=== Session Complete ===" << std::endl;
 }
 
-// Test 2: Multi-User Game Session Integration
-TEST_F(IntegrationTest, MultiUserGameSession) {
-    Auth auth("test_integration_users.db");
+TEST_F(IntegrationTest, MultiPlayerGameSession) {
+    // Test multiple players registering and playing games
+    std::string dbFile = "game_session_users.db";
+    addTestFile(dbFile);
+    addTestFile("history_alice.txt");
+    addTestFile("history_bob.txt");
+    
+    Auth auth(dbFile);
+    auth.clearAllUsers();
     
     // Register two players
-    ASSERT_TRUE(auth.registerUser("player1", "pass1"));
-    ASSERT_TRUE(auth.registerUser("player2", "pass2"));
+    ASSERT_TRUE(auth.registerUser("alice", "password1"));
+    ASSERT_TRUE(auth.registerUser("bob", "password2"));
     
     // Both players login
-    ASSERT_TRUE(auth.loginUser("player1", "pass1"));
-    ASSERT_TRUE(auth.loginUser("player2", "pass2"));
+    ASSERT_TRUE(auth.loginUser("alice", "password1"));
+    ASSERT_TRUE(auth.loginUser("bob", "password2"));
     
-    // Initialize separate histories
-    History history1("player1");
-    History history2("player2");
+    // Create history objects for both players
+    History aliceHistory("alice");
+    History bobHistory("bob");
     
-    // Play multiple games between players
-    for (int gameNum = 0; gameNum < 3; gameNum++) {
+    // Play multiple games between Alice (X) and Bob (O)
+    for (int gameNum = 1; gameNum <= 3; gameNum++) {
+        std::cout << "=== Game " << gameNum << " ===" << std::endl;
+        
         Game game;
-        std::string timestamp = "2024-06-20 " + std::to_string(10 + gameNum) + ":00:00";
+        Player alicePlayer = (gameNum % 2 == 1) ? Player::X : Player::O;
+        Player bobPlayer = (gameNum % 2 == 1) ? Player::O : Player::X;
         
-        // Simulate player vs player game
-        std::vector<std::pair<int, int>> moves = {
-            {0, 0}, {1, 1}, {0, 1}, {1, 0}, {0, 2} // X wins
-        };
+        std::cout << "Alice is " << (alicePlayer == Player::X ? "X" : "O") << std::endl;
+        std::cout << "Bob is " << (bobPlayer == Player::X ? "X" : "O") << std::endl;
         
-        for (const auto& move : moves) {
-            if (game.getWinner() == Player::NONE && !game.isDraw()) {
-                game.makeMove(move.first, move.second);
+        // Simulate alternating moves
+        int moveCount = 0;
+        while (game.getWinner() == Player::NONE && !game.isDraw() && moveCount < 9) {
+            auto availableMoves = game.getAvailableMoves();
+            if (!availableMoves.empty()) {
+                // Take a strategic move (prefer center, then corners, then edges)
+                auto move = availableMoves[0];
+                for (const auto& availableMove : availableMoves) {
+                    // Prefer center
+                    if (availableMove.first == 1 && availableMove.second == 1) {
+                        move = availableMove;
+                        break;
+                    }
+                    // Then prefer corners
+                    if ((availableMove.first == 0 || availableMove.first == 2) &&
+                        (availableMove.second == 0 || availableMove.second == 2)) {
+                        move = availableMove;
+                    }
+                }
+                
+                std::string currentPlayerName = (game.getCurrentPlayer() == alicePlayer) ? "Alice" : "Bob";
+                std::cout << currentPlayerName << " plays: (" << move.first << "," << move.second << ")" << std::endl;
+                
+                ASSERT_TRUE(game.makeMove(move.first, move.second));
+                printGameBoard(game);
+                moveCount++;
             }
         }
         
-        // Save results for both players
-        if (game.getWinner() == Player::X) {
-            history1.saveResult({timestamp, "Win vs Player2"});
-            history2.saveResult({timestamp, "Loss vs Player1"});
-        } else if (game.getWinner() == Player::O) {
-            history1.saveResult({timestamp, "Loss vs Player2"});
-            history2.saveResult({timestamp, "Win vs Player1"});
+        // Determine results for both players
+        std::string aliceResult, bobResult;
+        Player winner = game.getWinner();
+        
+        if (winner == Player::NONE) {
+            aliceResult = bobResult = "Draw";
+        } else if (winner == alicePlayer) {
+            aliceResult = "Win";
+            bobResult = "Loss";
         } else {
-            history1.saveResult({timestamp, "Draw vs Player2"});
-            history2.saveResult({timestamp, "Draw vs Player1"});
+            aliceResult = "Loss";
+            bobResult = "Win";
         }
+        
+        std::cout << "Game " << gameNum << " result - Alice: " << aliceResult << ", Bob: " << bobResult << std::endl;
+        
+        // Save results
+        std::string timestamp = getCurrentTimestamp();
+        aliceHistory.saveResult({timestamp, aliceResult});
+        bobHistory.saveResult({timestamp, bobResult});
     }
     
     // Verify both players have complete histories
-    auto history1Data = history1.loadHistory();
-    auto history2Data = history2.loadHistory();
+    auto aliceHistoryData = aliceHistory.loadHistory();
+    auto bobHistoryData = bobHistory.loadHistory();
     
-    EXPECT_EQ(3, history1Data.size());
-    EXPECT_EQ(3, history2Data.size());
+    EXPECT_EQ(3, aliceHistoryData.size());
+    EXPECT_EQ(3, bobHistoryData.size());
     
-    // Verify histories are separate and correct
-    for (int i = 0; i < 3; i++) {
-        EXPECT_NE(history1Data[i].result, history2Data[i].result); 
-        // Results should be opposite (win/loss)
+    // Count wins/losses/draws for verification
+    int aliceWins = 0, aliceLosses = 0, aliceDraws = 0;
+    int bobWins = 0, bobLosses = 0, bobDraws = 0;
+    
+    for (const auto& result : aliceHistoryData) {
+        if (result.result == "Win") aliceWins++;
+        else if (result.result == "Loss") aliceLosses++;
+        else if (result.result == "Draw") aliceDraws++;
     }
+    
+    for (const auto& result : bobHistoryData) {
+        if (result.result == "Win") bobWins++;
+        else if (result.result == "Loss") bobLosses++;
+        else if (result.result == "Draw") bobDraws++;
+    }
+    
+    // Verify the results are consistent (Alice's wins = Bob's losses, etc.)
+    EXPECT_EQ(aliceWins, bobLosses);
+    EXPECT_EQ(aliceLosses, bobWins);
+    EXPECT_EQ(aliceDraws, bobDraws);
+    
+    std::cout << "Alice: " << aliceWins << " wins, " << aliceLosses << " losses, " << aliceDraws << " draws" << std::endl;
+    std::cout << "Bob: " << bobWins << " wins, " << bobLosses << " losses, " << bobDraws << " draws" << std::endl;
 }
 
-// Test 3: Game-AI-History Integration with Performance Tracking
-TEST_F(IntegrationTest, GameAIHistoryWithPerformance) {
-    Auth auth("test_integration_users.db");
-    ASSERT_TRUE(auth.registerUser("perftest", "password"));
-    ASSERT_TRUE(auth.loginUser("perftest", "password"));
+TEST_F(IntegrationTest, AITournament) {
+    // Test AI vs AI games with different scenarios
+    std::string dbFile = "tournament_users.db";
+    addTestFile(dbFile);
+    addTestFile("history_testplayer1.txt");
+    addTestFile("history_testplayer2.txt");
     
-    History history("perftest");
+    Auth auth(dbFile);
+    auth.clearAllUsers();
     
-    // Play multiple AI games and track performance
-    const int numGames = 10;
-    std::vector<long> aiResponseTimes;
+    ASSERT_TRUE(auth.registerUser("testplayer1", "pass1"));
+    ASSERT_TRUE(auth.registerUser("testplayer2", "pass2"));
     
-    for (int gameNum = 0; gameNum < numGames; gameNum++) {
+    History player1History("testplayer1");
+    History player2History("testplayer2");
+    
+    AI aiX(Player::X);
+    AI aiO(Player::O);
+    
+    int totalGames = 5;
+    int xWins = 0, oWins = 0, draws = 0;
+    
+    std::cout << "=== AI Tournament: " << totalGames << " games ===" << std::endl;
+    
+    for (int gameNum = 1; gameNum <= totalGames; gameNum++) {
+        std::cout << "\n--- Game " << gameNum << " ---" << std::endl;
+        
         Game game;
-        AI ai(Player::O);
+        int moveCount = 0;
         
-        auto gameStart = std::chrono::high_resolution_clock::now();
-        
-        while (game.getWinner() == Player::NONE && !game.isDraw()) {
+        while (game.getWinner() == Player::NONE && !game.isDraw() && moveCount < 9) {
             if (game.getCurrentPlayer() == Player::X) {
-                // Quick user move (first available)
-                auto moves = game.getAvailableMoves();
-                game.makeMove(moves[0].first, moves[0].second);
+                auto move = aiX.findBestMove(game);
+                ASSERT_TRUE(game.makeMove(move.first, move.second));
+                std::cout << "X plays: (" << move.first << "," << move.second << ")" << std::endl;
             } else {
-                // Time AI move
-                auto aiStart = std::chrono::high_resolution_clock::now();
-                auto aiMove = ai.findBestMove(game);
-                auto aiEnd = std::chrono::high_resolution_clock::now();
-                
-                auto aiTime = std::chrono::duration_cast<std::chrono::milliseconds>(aiEnd - aiStart);
-                aiResponseTimes.push_back(aiTime.count());
-                
-                game.makeMove(aiMove.first, aiMove.second);
+                auto move = aiO.findBestMove(game);
+                ASSERT_TRUE(game.makeMove(move.first, move.second));
+                std::cout << "O plays: (" << move.first << "," << move.second << ")" << std::endl;
             }
+            moveCount++;
         }
         
-        auto gameEnd = std::chrono::high_resolution_clock::now();
-        auto gameDuration = std::chrono::duration_cast<std::chrono::seconds>(gameEnd - gameStart);
+        printGameBoard(game);
         
-        // Save game result with performance data
-        std::string result = "Game " + std::to_string(gameNum + 1) + 
-                           " (" + std::to_string(gameDuration.count()) + "s)";
-        if (game.getWinner() == Player::X) result += " - Win";
-        else if (game.getWinner() == Player::O) result += " - Loss";
-        else result += " - Draw";
+        Player winner = game.getWinner();
+        std::string result;
         
-        history.saveResult({"2024-06-20 12:00:00", result});
+        if (winner == Player::X) {
+            result = "X wins";
+            xWins++;
+        } else if (winner == Player::O) {
+            result = "O wins";
+            oWins++;
+        } else {
+            result = "Draw";
+            draws++;
+        }
+        
+        std::cout << "Result: " << result << std::endl;
+        
+        // Save to both players' histories
+        std::string timestamp = getCurrentTimestamp();
+        std::string player1Result = (winner == Player::X) ? "Win" : (winner == Player::O) ? "Loss" : "Draw";
+        std::string player2Result = (winner == Player::O) ? "Win" : (winner == Player::X) ? "Loss" : "Draw";
+        
+        player1History.saveResult({timestamp, player1Result});
+        player2History.saveResult({timestamp, player2Result});
     }
     
-    // Verify performance requirements
-    long totalAITime = 0;
-    long maxAITime = 0;
-    for (long time : aiResponseTimes) {
-        totalAITime += time;
-        maxAITime = std::max(maxAITime, time);
-    }
+    std::cout << "\n=== Tournament Results ===" << std::endl;
+    std::cout << "X wins: " << xWins << std::endl;
+    std::cout << "O wins: " << oWins << std::endl;
+    std::cout << "Draws: " << draws << std::endl;
+    std::cout << "Total games: " << (xWins + oWins + draws) << std::endl;
     
-    long avgAITime = totalAITime / aiResponseTimes.size();
+    // With optimal play, all games should be draws
+    EXPECT_EQ(totalGames, draws);
+    EXPECT_EQ(0, xWins);
+    EXPECT_EQ(0, oWins);
     
-    // Performance assertions
-    EXPECT_LT(avgAITime, 500); // Average AI response < 500ms
-    EXPECT_LT(maxAITime, 1000); // Max AI response < 1000ms
+    // Verify histories
+    auto player1HistoryData = player1History.loadHistory();
+    auto player2HistoryData = player2History.loadHistory();
     
-    // Verify all games were recorded
-    auto gameHistory = history.loadHistory();
-    EXPECT_EQ(numGames, gameHistory.size());
-    
-    std::cout << "AI Performance Stats:" << std::endl;
-    std::cout << "Average AI response time: " << avgAITime << "ms" << std::endl;
-    std::cout << "Maximum AI response time: " << maxAITime << "ms" << std::endl;
+    EXPECT_EQ(totalGames, player1HistoryData.size());
+    EXPECT_EQ(totalGames, player2HistoryData.size());
 }
 
-// Test 4: Error Handling Integration
-TEST_F(IntegrationTest, ErrorHandlingIntegration) {
-    // Test system behavior when components fail
+TEST_F(IntegrationTest, AuthSecurityAndPersistence) {
+    // Test authentication security features and data persistence
+    std::string dbFile = "test_integration_users.db";
+    addTestFile(dbFile);
     
-    // 1. Authentication failure should not crash game
-    Auth auth("test_integration_users.db");
-    ASSERT_TRUE(auth.registerUser("errortest", "password"));
+    // Test 1: Initial setup and user creation
+    {
+        Auth auth(dbFile);
+        auth.clearAllUsers();
+        
+        ASSERT_TRUE(auth.registerUser("secureuser", "strongpassword123"));
+        ASSERT_TRUE(auth.registerUser("anotheruser", "anotherpass456"));
+        
+        // Test login works
+        ASSERT_TRUE(auth.loginUser("secureuser", "strongpassword123"));
+        ASSERT_TRUE(auth.loginUser("anotheruser", "anotherpass456"));
+        
+        // Test wrong passwords fail
+        ASSERT_FALSE(auth.loginUser("secureuser", "wrongpassword"));
+        ASSERT_FALSE(auth.loginUser("anotheruser", "wrongpass"));
+        
+        // Test non-existent user fails
+        ASSERT_FALSE(auth.loginUser("nonexistent", "password"));
+    }
     
-    // Simulate auth failure during game
+    // Test 2: Persistence after restart (new Auth object)
+    {
+        Auth auth(dbFile);
+        
+        // Users should still exist
+        EXPECT_TRUE(auth.userExists("secureuser"));
+        EXPECT_TRUE(auth.userExists("anotheruser"));
+        
+        // Login should still work
+        EXPECT_TRUE(auth.loginUser("secureuser", "strongpassword123"));
+        EXPECT_TRUE(auth.loginUser("anotheruser", "anotherpass456"));
+        
+        // Test password change
+        EXPECT_TRUE(auth.changePassword("secureuser", "strongpassword123", "newsecurepass789"));
+        
+        // Old password should not work
+        EXPECT_FALSE(auth.loginUser("secureuser", "strongpassword123"));
+        
+        // New password should work
+        EXPECT_TRUE(auth.loginUser("secureuser", "newsecurepass789"));
+    }
+    
+    // Test 3: Verify password change persisted
+    {
+        Auth auth(dbFile);
+        EXPECT_TRUE(auth.loginUser("secureuser", "newsecurepass789"));
+        EXPECT_FALSE(auth.loginUser("secureuser", "strongpassword123"));
+    }
+}
+
+TEST_F(IntegrationTest, GameStateConsistency) {
+    // Test game state consistency across multiple operations
     Game game;
-    History history("errortest");
     
-    // Game should continue even if auth has issues
-    EXPECT_TRUE(game.makeMove(0, 0));
-    EXPECT_TRUE(game.makeMove(1, 1));
+    // Test initial state
+    EXPECT_EQ(Player::X, game.getCurrentPlayer());
+    EXPECT_EQ(Player::NONE, game.getWinner());
+    EXPECT_FALSE(game.isDraw());
+    EXPECT_EQ(9, game.getAvailableMoves().size());
     
-    // 2. History save failure should not crash game
-    // Create invalid history (readonly directory simulation)
-    History invalidHistory("/root/readonly/history"); // This should fail gracefully
+    // Play a series of moves and verify state consistency
+    std::vector<std::pair<int, int>> moves = {
+        {0, 0}, {0, 1}, {0, 2}, {1, 0}, {1, 2}, {2, 0}
+    };
     
-    // Game should still work
-    EXPECT_TRUE(game.makeMove(0, 1));
-    EXPECT_TRUE(game.makeMove(1, 0));
+    Player expectedPlayer = Player::X;
+    int expectedAvailableMoves = 9;
     
-    // 3. AI failure should not crash game
+    for (size_t i = 0; i < moves.size(); i++) {
+        // Verify current player before move
+        EXPECT_EQ(expectedPlayer, game.getCurrentPlayer());
+        
+        // Verify available moves count
+        EXPECT_EQ(expectedAvailableMoves, game.getAvailableMoves().size());
+        
+        // Make move
+        ASSERT_TRUE(game.makeMove(moves[i].first, moves[i].second));
+        
+        // Verify position is occupied
+        EXPECT_EQ(expectedPlayer, game.at(moves[i].first, moves[i].second));
+        
+        // Update expected state
+        expectedPlayer = (expectedPlayer == Player::X) ? Player::O : Player::X;
+        expectedAvailableMoves--;
+        
+        // Check for win condition
+        if (i == 5) { // After 6 moves, check if there's a winner
+            Player winner = game.getWinner();
+            if (winner != Player::NONE) {
+                std::cout << "Game won by " << (winner == Player::X ? "X" : "O") << " after move " << (i + 1) << std::endl;
+                break;
+            }
+        }
+    }
+    
+    // Test reset functionality
+    game.reset();
+    
+    EXPECT_EQ(Player::X, game.getCurrentPlayer());
+    EXPECT_EQ(Player::NONE, game.getWinner());
+    EXPECT_FALSE(game.isDraw());
+    EXPECT_EQ(9, game.getAvailableMoves().size());
+    
+    // Verify all positions are empty
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            EXPECT_EQ(Player::NONE, game.at(i, j));
+        }
+    }
+}
+
+TEST_F(IntegrationTest, HistoryIntegrityWithMultipleUsers) {
+    // Test that history files don't interfere with each other
+    std::vector<std::string> users = {"player1", "player2"};
+    std::vector<History> histories;
+    
+    // Setup histories for multiple users
+    for (const auto& user : users) {
+        addTestFile("history_" + user + ".txt");
+        histories.emplace_back(user);
+    }
+    
+    // Each user plays different numbers of games with different results
+    std::vector<std::vector<GameResult>> userResults = {
+        {
+            {"2024-01-15 10:00:00", "Win"},
+            {"2024-01-15 11:00:00", "Loss"},
+            {"2024-01-15 12:00:00", "Draw"}
+        },
+        {
+            {"2024-01-15 10:30:00", "Loss"},
+            {"2024-01-15 11:30:00", "Win"},
+            {"2024-01-15 12:30:00", "Win"},
+            {"2024-01-15 13:30:00", "Draw"},
+            {"2024-01-15 14:30:00", "Loss"}
+        }
+    };
+    
+    // Save results for each user
+    for (size_t i = 0; i < users.size(); i++) {
+        for (const auto& result : userResults[i]) {
+            histories[i].saveResult(result);
+        }
+    }
+    
+    // Verify each user's history is independent and correct
+    for (size_t i = 0; i < users.size(); i++) {
+        auto loadedHistory = histories[i].loadHistory();
+        
+        EXPECT_EQ(userResults[i].size(), loadedHistory.size()) 
+            << "History size mismatch for user " << users[i];
+        
+        for (size_t j = 0; j < std::min(userResults[i].size(), loadedHistory.size()); j++) {
+            EXPECT_EQ(userResults[i][j].date, loadedHistory[j].date)
+                << "Date mismatch for user " << users[i] << " at index " << j;
+            EXPECT_EQ(userResults[i][j].result, loadedHistory[j].result)
+                << "Result mismatch for user " << users[i] << " at index " << j;
+        }
+    }
+    
+    std::cout << "Verified independent histories for " << users.size() << " users" << std::endl;
+}
+
+TEST_F(IntegrationTest, StressTestAllComponents) {
+    // Stress test all components working together
+    std::string dbFile = "stress_test_users.db";
+    addTestFile(dbFile);
+    
+    Auth auth(dbFile);
+    auth.clearAllUsers();
+    
+    const int numUsers = 10;
+    const int gamesPerUser = 5;
+    
+    std::cout << "=== Stress Test: " << numUsers << " users, " << gamesPerUser << " games each ===" << std::endl;
+    
+    auto startTime = std::chrono::high_resolution_clock::now();
+    
+    // Register users
+    for (int i = 1; i <= numUsers; i++) {
+        std::string username = "stressuser" + std::to_string(i);
+        std::string password = "pass" + std::to_string(i);
+        
+        addTestFile("history_" + username + ".txt");
+        
+        ASSERT_TRUE(auth.registerUser(username, password));
+        ASSERT_TRUE(auth.loginUser(username, password));
+    }
+    
+    // Each user plays games against AI
     AI ai(Player::O);
     
-    // Even with edge cases, AI should return valid move or handle gracefully
-    Game edgeGame;
-    // Fill most of board
-    edgeGame.makeMove(0, 0); edgeGame.makeMove(0, 1);
-    edgeGame.makeMove(0, 2); edgeGame.makeMove(1, 0);
-    edgeGame.makeMove(1, 2); edgeGame.makeMove(2, 0);
-    edgeGame.makeMove(2, 1); // Only (1,1) and (2,2) left
-    
-    auto aiMove = ai.findBestMove(edgeGame);
-    EXPECT_TRUE((aiMove.first == 1 && aiMove.second == 1) || 
-                (aiMove.first == 2 && aiMove.second == 2));
-}
-
-// Test 5: Data Consistency Integration
-TEST_F(IntegrationTest, DataConsistencyIntegration) {
-    Auth auth("test_integration_users.db");
-    ASSERT_TRUE(auth.registerUser("consistency", "password"));
-    
-    History history("consistency");
-    
-    // Play games and verify data consistency across components
-    for (int i = 0; i < 5; i++) {
-        Game game;
-        AI ai(Player::O);
+    for (int userId = 1; userId <= numUsers; userId++) {
+        std::string username = "stressuser" + std::to_string(userId);
+        History userHistory(username);
         
-        // Quick game simulation
-        while (game.getWinner() == Player::NONE && !game.isDraw()) {
-            if (game.getCurrentPlayer() == Player::X) {
-                auto moves = game.getAvailableMoves();
-                game.makeMove(moves[0].first, moves[0].second);
-            } else {
-                auto aiMove = ai.findBestMove(game);
-                game.makeMove(aiMove.first, aiMove.second);
+        for (int gameNum = 1; gameNum <= gamesPerUser; gameNum++) {
+            Game game;
+            
+            // Quick game simulation
+            while (game.getWinner() == Player::NONE && !game.isDraw()) {
+                if (game.getCurrentPlayer() == Player::X) {
+                    // Human player - take first available move
+                    auto moves = game.getAvailableMoves();
+                    if (!moves.empty()) {
+                        game.makeMove(moves[0].first, moves[0].second);
+                    }
+                } else {
+                    // AI player
+                    auto aiMove = ai.findBestMove(game);
+                    game.makeMove(aiMove.first, aiMove.second);
+                }
             }
+            
+            // Save result
+            std::string result = (game.getWinner() == Player::X) ? "Win" : 
+                               (game.getWinner() == Player::O) ? "Loss" : "Draw";
+            
+            std::string timestamp = "2024-01-15 " + 
+                std::to_string(10 + gameNum) + ":00:00";
+            
+            userHistory.saveResult({timestamp, result});
         }
+    }
+    
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+    
+    std::cout << "Stress test completed in " << duration.count() << "ms" << std::endl;
+    std::cout << "Total operations: " << (numUsers * (1 + gamesPerUser)) << std::endl;
+    std::cout << "Average time per operation: " << 
+        (duration.count() / (numUsers * (1 + gamesPerUser))) << "ms" << std::endl;
+    
+    // Verify all users still exist and have correct history counts
+    int totalHistoryEntries = 0;
+    for (int userId = 1; userId <= numUsers; userId++) {
+        std::string username = "stressuser" + std::to_string(userId);
         
-        // Save result
-        std::string result = (game.getWinner() == Player::X) ? "Win" : 
-                           (game.getWinner() == Player::O) ? "Loss" : "Draw";
-        history.saveResult({"2024-06-20", result});
+        EXPECT_TRUE(auth.userExists(username));
+        
+        History userHistory(username);
+        auto history = userHistory.loadHistory();
+        
+        EXPECT_EQ(gamesPerUser, history.size()) 
+            << "Incorrect history size for " << username;
+        
+        totalHistoryEntries += history.size();
     }
     
-    // Verify data consistency
-    auto historyData = history.loadHistory();
-    EXPECT_EQ(5, historyData.size());
+    EXPECT_EQ(numUsers * gamesPerUser, totalHistoryEntries);
     
-    // All results should be valid game outcomes
-    for (const auto& record : historyData) {
-        EXPECT_TRUE(record.result == "Win" || 
-                   record.result == "Loss" || 
-                   record.result == "Draw");
-    }
+    std::cout << "Verified " << totalHistoryEntries << " total history entries across " 
+              << numUsers << " users" << std::endl;
     
-    // User should still exist and be authenticatable
-    EXPECT_TRUE(auth.loginUser("consistency", "password"));
+    // Performance check - should complete reasonably quickly
+    EXPECT_LT(duration.count(), 10000); // Less than 10 seconds
 }

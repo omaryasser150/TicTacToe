@@ -86,12 +86,13 @@ if(BUILD_TESTS)
     find_package(GTest QUIET)
     
     if(GTest_FOUND)
-        # Test sources (updated paths)
+        # Test sources 
         set(TEST_SOURCES
             tests/test_auth.cpp
             tests/test_game.cpp
             tests/test_ai.cpp
             tests/test_history.cpp
+	    tests/test_integration.cpp	
         )
 
         # Create test executable

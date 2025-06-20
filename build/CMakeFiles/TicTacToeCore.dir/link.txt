@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libTicTacToeCore.a CMakeFiles/TicTacToeCore.dir/TicTacToeCore_autogen/mocs_compilation.cpp.obj CMakeFiles/TicTacToeCore.dir/src/Auth.cpp.obj CMakeFiles/TicTacToeCore.dir/src/Game.cpp.obj CMakeFiles/TicTacToeCore.dir/src/AI.cpp.obj CMakeFiles/TicTacToeCore.dir/src/History.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libTicTacToeCore.a
