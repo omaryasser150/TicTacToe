@@ -30,7 +30,7 @@ void MainWindow::setupUI()
     // Control Frame
     controlFrame = new QFrame();
     controlFrame->setObjectName("controlFrame");
-    controlFrame->setFixedHeight(120);
+    controlFrame->setFixedHeight(140);
 
     QVBoxLayout* controlLayout = new QVBoxLayout(controlFrame);
     controlLayout->setSpacing(10);
@@ -49,7 +49,7 @@ void MainWindow::setupUI()
     topControlLayout->addWidget(playerLabel);
     topControlLayout->addStretch();
     topControlLayout->addWidget(statusLabel);
-
+    topControlLayout->setContentsMargins(0, 0, 0, 5);
     // Score display
     scoreLabel = new QLabel("Wins: 0 | AI: 0 | Draws: 0");
     scoreLabel->setObjectName("scoreLabel");
@@ -141,6 +141,7 @@ void MainWindow::applyStyles()
             background: rgba(231, 76, 60, 0.1);
             padding: 8px 15px;
             border-radius: 15px;
+            min-width: 120px;
         }
 
         #scoreLabel {

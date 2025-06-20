@@ -1,3 +1,4 @@
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/Documentation.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToe.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/RunTests.dir
@@ -5,6 +6,10 @@ C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/run_tests.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/test.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/edit_cache.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/rebuild_cache.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/list_install_components.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/install.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/install/local.dir
+C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/install/strip.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore_autogen_timestamp_deps.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToeCore_autogen.dir
 C:/Users/omary/My-Github/TicTacToe/build/CMakeFiles/TicTacToe_autogen_timestamp_deps.dir
