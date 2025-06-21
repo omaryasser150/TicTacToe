@@ -1,29 +1,383 @@
-name: C++ GoogleTest CI
+name: CI/CD Pipeline
 
 on:
   push:
     branches: [ main ]
+    tags: [ 'v*' ]
   pull_request:
-    branches: [ main ]
+    branches: [ main]
+  workflow_dispatch:
+
+env:
+  CMAKE_VERSION: 3.16.0
+  QT_VERSION: 6.5.0
+  BUILD_TYPE: Release
 
 jobs:
-  build:
+  # Code Quality and Static Analysis
+  code-quality:
+    name: Code Quality Check
     runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install code quality tools
+      run: |
+        pip install cpplint cppcheck-codequality
+
+    - name: Run cpplint
+      run: |
+        find . -name "*.cpp" -o -name "*.h" | xargs cpplint --filter=-legal/copyright,-build/include_subdir --linelength=120
+
+    - name: Install cppcheck
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cppcheck
+
+    - name: Run cppcheck
+      run: |
+        cppcheck --enable=all --std=c++17 --platform=unix64 \
+          --suppress=missingIncludeSystem \
+          --suppress=unmatchedSuppression \
+          --suppress=unusedFunction \
+          --xml --xml-version=2 \
+          src/ Header/ 2> cppcheck-report.xml || true
+
+    - name: Upload cppcheck results
+      uses: actions/upload-artifact@v3
+      with:
+        name: cppcheck-report
+        path: cppcheck-report.xml
+
+  # Build and Test Matrix
+  build-and-test:
+    name: Build & Test
+    needs: code-quality
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        build_type: [Debug, Release]
+        include:
+          - os: ubuntu-latest
+            qt_arch: gcc_64
+            cmake_generator: "Unix Makefiles"
+          - os: windows-latest
+            qt_arch: win64_msvc2019_64
+            cmake_generator: "Visual Studio 17 2022"
+          - os: macos-latest
+            qt_arch: clang_64
+            cmake_generator: "Unix Makefiles"
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
-        submodules: true
+        fetch-depth: 0
 
-    - name: Install dependencies
-      run: sudo apt update && sudo apt install -y cmake g++ make
+    - name: Setup CMake
+      uses: jwlawson/actions-setup-cmake@v1.14
+      with:
+        cmake-version: ${{ env.CMAKE_VERSION }}
 
-    - name: Configure with CMake
-      run: cmake -S . -B build
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: ${{ env.QT_VERSION }}
+        arch: ${{ matrix.qt_arch }}
+        cache: true
+        cache-key-prefix: ${{ runner.os }}-qt
 
-    - name: Build project
-      run: cmake --build build
+    - name: Install Google Test (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgtest-dev libgmock-dev
+        cd /usr/src/gtest
+        sudo cmake CMakeLists.txt
+        sudo make
+        sudo cp lib/*.a /usr/lib
+        sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a
+        sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
 
-    - name: Run Google Tests
-      run: ctest --test-dir build
+    - name: Install Google Test (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install googletest
+
+    - name: Setup MSVC (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Install Google Test (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        git clone https://github.com/google/googletest.git
+        cd googletest
+        mkdir build
+        cd build
+        cmake .. -A x64
+        cmake --build . --config Release
+        cmake --install . --prefix C:/googletest
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. \
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+          -DBUILD_TESTS=ON \
+          ${{ matrix.os == 'windows-latest' && '-A x64 -DGTest_ROOT=C:/googletest' || '' }}
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build_type }} --parallel
+
+    - name: Run Tests
+      run: |
+        cd build
+        ctest --output-on-failure --config ${{ matrix.build_type }}
+
+    - name: Generate Test Report
+      if: always()
+      run: |
+        cd build
+        ctest --output-on-failure --config ${{ matrix.build_type }} -T Test || true
+
+    - name: Upload Test Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results-${{ matrix.os }}-${{ matrix.build_type }}
+        path: |
+          build/Testing/
+          build/tests/
+
+    - name: Upload Build Artifacts
+      if: matrix.build_type == 'Release'
+      uses: actions/upload-artifact@v3
+      with:
+        name: tictactoe-${{ matrix.os }}-${{ matrix.build_type }}
+        path: |
+          build/TicTacToe*
+          build/Release/TicTacToe*
+          build/*.app/
+
+  # Memory and Performance Testing (Linux only)
+  memory-test:
+    name: Memory & Performance Test
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: ${{ env.QT_VERSION }}
+        cache: true
+
+    - name: Install testing tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y valgrind libgtest-dev
+        cd /usr/src/gtest
+        sudo cmake CMakeLists.txt
+        sudo make
+        sudo cp lib/*.a /usr/lib
+
+    - name: Build with Debug symbols
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON
+        make -j$(nproc)
+
+    - name: Run Valgrind Memory Check
+      run: |
+        cd build
+        xvfb-run -a valgrind \
+          --tool=memcheck \
+          --leak-check=full \
+          --show-leak-kinds=all \
+          --track-origins=yes \
+          --xml=yes \
+          --xml-file=valgrind-report.xml \
+          ./RunTests || true
+
+    - name: Upload Valgrind Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: valgrind-report
+        path: build/valgrind-report.xml
+
+  # Security Scanning
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: code-quality
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Bandit Security Scan
+      uses: securecodewarrior/github-action-add-sarif@v1
+      with:
+        sarif-file: 'bandit-report.sarif'
+      continue-on-error: true
+
+    - name: Install security tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-tools
+
+    - name: Run clang-tidy security checks
+      run: |
+        find src Header -name "*.cpp" -o -name "*.h" | \
+        xargs clang-tidy \
+          -checks='-*,cert-*,security-*,bugprone-*' \
+          -format-style=file || true
+
+  # Documentation Generation
+  documentation:
+    name: Generate Documentation
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Doxygen
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y doxygen graphviz
+
+    - name: Generate Documentation
+      run: |
+        doxygen Doxyfile || echo "Doxyfile not found, skipping documentation"
+
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/html
+
+  # Release Creation
+  release:
+    name: Create Release
+    needs: [build-and-test, memory-test, security-scan]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+
+    - name: Create Release Notes
+      id: release_notes
+      run: |
+        echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+        echo "## What's Changed" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        git log --pretty=format:"* %s (%an)" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Package Artifacts
+      run: |
+        mkdir -p release-packages
+        
+        # Package Linux build
+        if [ -d "tictactoe-ubuntu-latest-Release" ]; then
+          cd tictactoe-ubuntu-latest-Release
+          tar -czf ../release-packages/tictactoe-linux-x64.tar.gz *
+          cd ..
+        fi
+        
+        # Package Windows build
+        if [ -d "tictactoe-windows-latest-Release" ]; then
+          cd tictactoe-windows-latest-Release
+          zip -r ../release-packages/tictactoe-windows-x64.zip *
+          cd ..
+        fi
+        
+        # Package macOS build
+        if [ -d "tictactoe-macos-latest-Release" ]; then
+          cd tictactoe-macos-latest-Release
+          tar -czf ../release-packages/tictactoe-macos-x64.tar.gz *
+          cd ..
+        fi
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: release-packages/*
+        body: ${{ steps.release_notes.outputs.RELEASE_NOTES }}
+        draft: false
+        prerelease: ${{ contains(github.ref, '-') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Deployment to staging/production
+  deploy:
+    name: Deploy Application
+    needs: [build-and-test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: 
+      name: staging
+      url: https://staging.tictactoe.example.com
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download Linux artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: tictactoe-ubuntu-latest-Release
+
+    - name: Deploy to staging server
+      run: |
+        echo "Deploying to staging environment..."
+        # Add your deployment scripts here
+        # Example: rsync, scp, docker deploy, etc.
+        echo "Deployment completed successfully!"
+
+  # Notification
+  notify:
+    name: Notify Team
+    needs: [build-and-test, memory-test, security-scan]
+    runs-on: ubuntu-latest
+    if: always() && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+
+    steps:
+    - name: Notify on Success
+      if: needs.build-and-test.result == 'success'
+      run: |
+        echo "✅ CI/CD Pipeline completed successfully!"
+        # Add notification logic (Slack, Teams, email, etc.)
+
+    - name: Notify on Failure
+      if: needs.build-and-test.result == 'failure'
+      run: |
+        echo "❌ CI/CD Pipeline failed!"
+        # Add notification logic for failures

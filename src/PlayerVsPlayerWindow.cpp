@@ -22,7 +22,7 @@ PlayerVsPlayerWindow::PlayerVsPlayerWindow(const QString& username, QWidget* par
     player2Name = player2.trimmed();   // Player 2 is always O
 
     setWindowTitle(QString("Tic Tac Toe - %1 vs %2").arg(player1Name).arg(player2Name));
-    setFixedSize(600, 700);
+    setFixedSize(650, 700);  // Increased width for better layout
     setupUI();
     applyStyles();
     updateBoard();
@@ -47,19 +47,23 @@ void PlayerVsPlayerWindow::setupUI()
     controlLayout->setSpacing(10);
     controlLayout->setContentsMargins(20, 15, 20, 15);
 
-    // Player info section
+    // Player info section - FIXED
     QHBoxLayout* playerInfoLayout = new QHBoxLayout();
+    playerInfoLayout->setSpacing(15);
 
     playerLabel = new QLabel(QString("%1 (X) vs %2 (O)").arg(player1Name).arg(player2Name));
     playerLabel->setObjectName("playerLabel");
+    playerLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     currentPlayerLabel = new QLabel(QString("%1's Turn (X)").arg(player1Name));
     currentPlayerLabel->setObjectName("currentPlayerLabel");
     currentPlayerLabel->setAlignment(Qt::AlignCenter);
+    currentPlayerLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    currentPlayerLabel->setMinimumWidth(180);
+    currentPlayerLabel->setMaximumWidth(200);
 
-    playerInfoLayout->addWidget(playerLabel);
-    playerInfoLayout->addStretch();
-    playerInfoLayout->addWidget(currentPlayerLabel);
+    playerInfoLayout->addWidget(playerLabel, 1);
+    playerInfoLayout->addWidget(currentPlayerLabel, 0);
 
     // Status label
     statusLabel = new QLabel("Game started! X goes first.");
@@ -152,13 +156,15 @@ void PlayerVsPlayerWindow::applyStyles()
         }
 
         #currentPlayerLabel {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             color: #e74c3c;
             background: rgba(231, 76, 60, 0.1);
-            padding: 8px 15px;
-            border-radius: 15px;
-            min-width: 150px;
+            padding: 6px 12px;
+            border-radius: 12px;
+            min-width: 160px;
+            max-width: 180px;
+            border: 1px solid rgba(231, 76, 60, 0.2);
         }
 
         #statusLabel {
@@ -313,11 +319,11 @@ void PlayerVsPlayerWindow::updatePlayerTurn() {
 
     if (currentPlayer == Player::X) {
         currentPlayerLabel->setText(QString("%1's Turn (X)").arg(player1Name));
-        currentPlayerLabel->setStyleSheet("color: #e74c3c; background: rgba(231, 76, 60, 0.1);");
+        currentPlayerLabel->setStyleSheet("color: #e74c3c; background: rgba(231, 76, 60, 0.1); border: 1px solid rgba(231, 76, 60, 0.2); padding: 6px 12px; border-radius: 12px; min-width: 160px; max-width: 180px;");
         statusLabel->setText(QString("%1, make your move!").arg(player1Name));
     } else {
         currentPlayerLabel->setText(QString("%1's Turn (O)").arg(player2Name));
-        currentPlayerLabel->setStyleSheet("color: #3498db; background: rgba(52, 152, 219, 0.1);");
+        currentPlayerLabel->setStyleSheet("color: #3498db; background: rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.2); padding: 6px 12px; border-radius: 12px; min-width: 160px; max-width: 180px;");
         statusLabel->setText(QString("%1, make your move!").arg(player2Name));
     }
 }
