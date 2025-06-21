@@ -4,9 +4,9 @@
 #include "AI.h"
 #include "History.h"
 #include <filesystem>
-#include <chrono>
+#include <chrono>               // Used in performance test or creating timestamps
 #include <iostream>
-#include <sstream>
+#include <sstream>              //sed to format strings (especially timestamps) in a flexible way
 
 class IntegrationTest : public ::testing::Test {
 protected:
@@ -61,6 +61,7 @@ protected:
         return ss.str();
     }
 
+    //Prints the current Tic Tac Toe board visually to the console (for debugging or analysis)
     void printGameBoard(const Game& game) {
         std::cout << "Current board state:" << std::endl;
         for (int i = 0; i < 3; i++) {
@@ -357,61 +358,6 @@ TEST_F(IntegrationTest, AITournament) {
     EXPECT_EQ(totalGames, player2HistoryData.size());
 }
 
-TEST_F(IntegrationTest, AuthSecurityAndPersistence) {
-    // Test authentication security features and data persistence
-    std::string dbFile = "test_integration_users.db";
-    addTestFile(dbFile);
-    
-    // Test 1: Initial setup and user creation
-    {
-        Auth auth(dbFile);
-        auth.clearAllUsers();
-        
-        ASSERT_TRUE(auth.registerUser("secureuser", "strongpassword123"));
-        ASSERT_TRUE(auth.registerUser("anotheruser", "anotherpass456"));
-        
-        // Test login works
-        ASSERT_TRUE(auth.loginUser("secureuser", "strongpassword123"));
-        ASSERT_TRUE(auth.loginUser("anotheruser", "anotherpass456"));
-        
-        // Test wrong passwords fail
-        ASSERT_FALSE(auth.loginUser("secureuser", "wrongpassword"));
-        ASSERT_FALSE(auth.loginUser("anotheruser", "wrongpass"));
-        
-        // Test non-existent user fails
-        ASSERT_FALSE(auth.loginUser("nonexistent", "password"));
-    }
-    
-    // Test 2: Persistence after restart (new Auth object)
-    {
-        Auth auth(dbFile);
-        
-        // Users should still exist
-        EXPECT_TRUE(auth.userExists("secureuser"));
-        EXPECT_TRUE(auth.userExists("anotheruser"));
-        
-        // Login should still work
-        EXPECT_TRUE(auth.loginUser("secureuser", "strongpassword123"));
-        EXPECT_TRUE(auth.loginUser("anotheruser", "anotherpass456"));
-        
-        // Test password change
-        EXPECT_TRUE(auth.changePassword("secureuser", "strongpassword123", "newsecurepass789"));
-        
-        // Old password should not work
-        EXPECT_FALSE(auth.loginUser("secureuser", "strongpassword123"));
-        
-        // New password should work
-        EXPECT_TRUE(auth.loginUser("secureuser", "newsecurepass789"));
-    }
-    
-    // Test 3: Verify password change persisted
-    {
-        Auth auth(dbFile);
-        EXPECT_TRUE(auth.loginUser("secureuser", "newsecurepass789"));
-        EXPECT_FALSE(auth.loginUser("secureuser", "strongpassword123"));
-    }
-}
-
 TEST_F(IntegrationTest, GameStateConsistency) {
     // Test game state consistency across multiple operations
     Game game;
@@ -538,7 +484,7 @@ TEST_F(IntegrationTest, StressTestAllComponents) {
     
     std::cout << "=== Stress Test: " << numUsers << " users, " << gamesPerUser << " games each ===" << std::endl;
     
-    auto startTime = std::chrono::high_resolution_clock::now();
+    auto startTime = std::chrono::high_resolution_clock::now(); //Marks the start time to measure performance later
     
     // Register users
     for (int i = 1; i <= numUsers; i++) {

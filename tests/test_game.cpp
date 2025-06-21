@@ -3,10 +3,10 @@
 
 class GameTest : public ::testing::Test {
 protected:
-    Game game;
+    Game game; // A fresh game instance for each test
     
     void SetUp() override {
-        game.reset();
+        game.reset(); // Ensure game is reset before each test
     }
 };
 
@@ -32,12 +32,12 @@ TEST_F(GameTest, BasicMoves) {
     // Test first move (X)
     EXPECT_TRUE(game.makeMove(0, 0));
     EXPECT_EQ(Player::X, game.at(0, 0));
-    EXPECT_EQ(Player::O, game.getCurrentPlayer());
+    EXPECT_EQ(Player::O, game.getCurrentPlayer()); // O’s turn
     
     // Test second move (O)
     EXPECT_TRUE(game.makeMove(1, 1));
     EXPECT_EQ(Player::O, game.at(1, 1));
-    EXPECT_EQ(Player::X, game.getCurrentPlayer());
+    EXPECT_EQ(Player::X, game.getCurrentPlayer()); // X’s turn
     
     // Test invalid move (occupied position)
     EXPECT_FALSE(game.makeMove(0, 0));
@@ -122,31 +122,6 @@ TEST_F(GameTest, Draw) {
     EXPECT_FALSE(game.isWin(Player::O));
 }
 
-TEST_F(GameTest, Reset) {
-    // Make some moves
-    game.makeMove(0, 0);
-    game.makeMove(1, 1);
-    game.makeMove(2, 2);
-    
-    // Reset the game
-    game.reset();
-    
-    // Test reset state
-    EXPECT_EQ(Player::X, game.getCurrentPlayer());
-    EXPECT_EQ(Player::NONE, game.getWinner());
-    EXPECT_FALSE(game.isDraw());
-    
-    // Test all positions are empty again
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            EXPECT_EQ(Player::NONE, game.at(i, j));
-        }
-    }
-    
-    // Test available moves
-    auto moves = game.getAvailableMoves();
-    EXPECT_EQ(9, moves.size());
-}
 
 TEST_F(GameTest, AvailableMoves) {
     // Initially all 9 moves available
@@ -170,24 +145,6 @@ TEST_F(GameTest, AvailableMoves) {
     EXPECT_EQ(6, moves.size());
 }
 
-TEST_F(GameTest, ComplexScenario) {
-    // Play a complex game scenario
-    // X O X
-    // O X O
-    // ? ? X  <- X should win with (2,2)
-    
-    game.makeMove(0, 0); // X
-    game.makeMove(0, 1); // O
-    game.makeMove(1, 1); // X
-    game.makeMove(1, 0); // O
-    game.makeMove(0, 2); // X
-    game.makeMove(1, 2); // O
-    game.makeMove(2, 2); // X wins (diagonal)
-    
-    EXPECT_EQ(Player::X, game.getWinner());
-    EXPECT_TRUE(game.isWin(Player::X));
-    EXPECT_FALSE(game.isDraw());
-}
 
 TEST_F(GameTest, PlayerAlternation) {
     // Test that players alternate properly

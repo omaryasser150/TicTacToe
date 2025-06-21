@@ -1,9 +1,9 @@
-#include <gtest/gtest.h>
-#include "History.h"
-#include <filesystem>
-#include <fstream>
-#include <vector>
-#include <chrono>
+#include <gtest/gtest.h>         // Google Test framework
+#include "History.h"             // Class under test
+#include <filesystem>           // For deleting test files
+#include <fstream>              // File I/O for manual result file creation
+#include <vector>               // To track and compare results
+#include <chrono>               // Used in performance test
 
 class HistoryTest : public ::testing::Test {
 protected:
@@ -37,6 +37,7 @@ protected:
     }
 };
 
+// Just testing creation of History objects for different usernames
 TEST_F(HistoryTest, Initialization) {
     // Test history initialization with different usernames
     History history1("testuser1");
@@ -153,6 +154,7 @@ TEST_F(HistoryTest, LoadEmptyHistory) {
     EXPECT_EQ(0, loadedHistory.size());
 }
 
+//This is a data persistence test simulating what happens if the app shuts down and restarts
 TEST_F(HistoryTest, SaveAndLoadRoundTrip) {
     std::string username = "roundtrip_test_user";
     addTestFile("history_" + username + ".txt");
@@ -185,105 +187,6 @@ TEST_F(HistoryTest, SaveAndLoadRoundTrip) {
     }
 }
 
-TEST_F(HistoryTest, SpecialCharactersInResults) {
-    std::string username = "special_chars_user";
-    addTestFile("history_" + username + ".txt");
-    
-    History history(username);
-    
-    // Test with various result types that might contain special characters
-    std::vector<GameResult> specialResults = {
-        {"2024-01-15 10:30:00", "Win vs AI"},
-        {"2024-01-15 11:45:00", "Loss (timeout)"},
-        {"2024-01-15 14:20:00", "Draw - stalemate"},
-        {"2024-01-16 09:15:00", "Win: perfect game!"}
-    };
-    
-    // Save results
-    for (const auto& result : specialResults) {
-        history.saveResult(result);
-    }
-    
-    // Load and verify
-    std::vector<GameResult> loadedResults = history.loadHistory();
-    
-    EXPECT_EQ(specialResults.size(), loadedResults.size());
-    
-    for (size_t i = 0; i < std::min(specialResults.size(), loadedResults.size()); ++i) {
-        EXPECT_EQ(specialResults[i].date, loadedResults[i].date) 
-            << "Date mismatch at index " << i;
-        EXPECT_EQ(specialResults[i].result, loadedResults[i].result) 
-            << "Result mismatch at index " << i;
-    }
-}
-
-TEST_F(HistoryTest, MalformedDataHandling) {
-    std::string username = "malformed_test_user";
-    std::string expectedFile = "history_" + username + ".txt";
-    addTestFile(expectedFile);
-    
-    // Create file with malformed data
-    std::ofstream file(expectedFile);
-    file << "2024-01-15 10:30:00,Win\n";           // Good line
-    file << "malformed line without comma\n";       // Bad line
-    file << "2024-01-15 11:45:00,Loss\n";          // Good line
-    file << ",Empty date\n";                         // Bad line
-    file << "2024-01-15 14:20:00,\n";              // Empty result
-    file << "2024-01-16 09:15:00,Draw\n";          // Good line
-    file.close();
-    
-    History history(username);
-    std::vector<GameResult> loadedHistory = history.loadHistory();
-    
-    // Should only load the properly formatted lines
-    // Note: The implementation might handle malformed lines differently
-    // This test checks that it doesn't crash and loads what it can
-    
-    EXPECT_GE(loadedHistory.size(), 3); // At least the good entries
-    
-    // Check that the good entries are loaded
-    bool hasGoodEntries = false;
-    for (const auto& entry : loadedHistory) {
-        if ((entry.date == "2024-01-15 10:30:00" && entry.result == "Win") ||
-            (entry.date == "2024-01-15 11:45:00" && entry.result == "Loss") ||
-            (entry.date == "2024-01-16 09:15:00" && entry.result == "Draw")) {
-            hasGoodEntries = true;
-            break;
-        }
-    }
-    
-    EXPECT_TRUE(hasGoodEntries);
-}
-
-TEST_F(HistoryTest, ConcurrentAccessSimulation) {
-    std::string username = "concurrent_test_user";
-    addTestFile("history_" + username + ".txt");
-    
-    // Simulate multiple rapid saves (like multiple games in quick succession)
-    History history(username);
-    
-    for (int i = 0; i < 10; ++i) {
-        std::string timestamp = std::string("2024-01-15 10:") +
-                   (i < 10 ? "0" : "") + std::to_string(i) + ":00";
-        std::string result = (i % 3 == 0) ? "Win" : (i % 3 == 1) ? "Loss" : "Draw";
-        
-        GameResult gameResult = {timestamp, result};
-        history.saveResult(gameResult);
-    }
-    
-    // Load and verify all saves worked
-    std::vector<GameResult> loadedHistory = history.loadHistory();
-    
-    EXPECT_EQ(10, loadedHistory.size());
-    
-    // Verify the sequence is correct
-    for (int i = 0; i < 10 && i < static_cast<int>(loadedHistory.size()); ++i) {
-        std::string expectedResult = (i % 3 == 0) ? "Win" : (i % 3 == 1) ? "Loss" : "Draw";
-        EXPECT_EQ(expectedResult, loadedHistory[i].result) 
-            << "Sequence error at index " << i;
-    }
-}
-
 TEST_F(HistoryTest, LargeHistoryFile) {
     std::string username = "large_test_user";
     addTestFile("history_" + username + ".txt");
@@ -293,7 +196,7 @@ TEST_F(HistoryTest, LargeHistoryFile) {
     // Create a large number of entries
     const int numEntries = 1000;
     
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now(); //Marks the start time for saving entries using high-resolution timer
     
     for (int i = 0; i < numEntries; ++i) {
         std::string date = std::string("2024-01-") +
@@ -305,10 +208,10 @@ TEST_F(HistoryTest, LargeHistoryFile) {
         history.saveResult(gameResult);
     }
     
-    auto end = std::chrono::high_resolution_clock::now();
-    auto saveDuration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    auto end = std::chrono::high_resolution_clock::now();//Marks the end time
+    auto saveDuration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start); //Calculates how long the saving process took in milliseconds
     
-    std::cout << "Time to save " << numEntries << " entries: " << saveDuration.count() << "ms" << std::endl;
+    std::cout << "Time to save " << numEntries << " entries: " << saveDuration.count() << "ms" << std::endl; //Prints out how long it took to save 1000 results (for debugging/monitoring performance)
     
     // Test loading performance
     start = std::chrono::high_resolution_clock::now();

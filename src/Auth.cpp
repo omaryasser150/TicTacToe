@@ -1,15 +1,15 @@
 // Auth.cpp
 #include "Auth.h"
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-#include <random>
-#include <functional>
-#include <chrono>
+#include <fstream>      // For file reading/writing
+#include <sstream>      // For parsing strings
+#include <iostream>     // For console output
+#include <iomanip>      // For formatting hex
+#include <random>       // For random salt
+#include <functional>   // For std::hash
+#include <chrono>       // For time-based seed
 
 Auth::Auth(const std::string& filename) : dbFile(filename) {
-    loadUsers();
+    loadUsers(); // Load users when Auth object is created
 }
 
 std::string Auth::hashPassword(const std::string& password, const std::string& salt) {

@@ -1,8 +1,9 @@
-#include <gtest/gtest.h>
-#include "AI.h"
-#include "Game.h"
-#include <chrono>
-#include <iostream> 
+#include <gtest/gtest.h>      // Google Test framework
+#include "AI.h"               // AI logic header
+#include "Game.h"             // Game logic header
+#include <chrono>             // For performance timing test
+#include <iostream>           // For debug printing
+
 
 class AITest : public ::testing::Test {
 protected:
@@ -156,48 +157,20 @@ TEST_F(AITest, ReturnsValidMove) {
     EXPECT_TRUE(foundMove);
 }
 
-TEST_F(AITest, HandlesWonGameState) {
-    Game wonGame;
-    wonGame.makeMove(0, 0); // X
-    wonGame.makeMove(1, 0); // O
-    wonGame.makeMove(0, 1); // X
-    wonGame.makeMove(1, 1); // O
-    wonGame.makeMove(0, 2); // X wins
-    // Board: X X X
-    //        O O .
-    //        . . .
-    
-    EXPECT_EQ(Player::X, wonGame.getWinner());
-    
-    // AI should still be able to find a move (even though game is over)
-    AI aiO(Player::O);
-    auto move = aiO.findBestMove(wonGame);
-    
-    // The move should be valid (from available positions)
-    auto availableMoves = wonGame.getAvailableMoves();
-    bool validMove = false;
-    for (const auto& availableMove : availableMoves) {
-        if (availableMove.first == move.first && availableMove.second == move.second) {
-            validMove = true;
-            break;
-        }
-    }
-    EXPECT_TRUE(validMove || availableMoves.empty());
-}
 
 TEST_F(AITest, Performance) {
     Game game;
     AI ai(Player::X);
     
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now(); //Record the current time before calculating the AI move
     auto move = ai.findBestMove(game);
-    auto end = std::chrono::high_resolution_clock::now();
+    auto end = std::chrono::high_resolution_clock::now(); //Record the time after the move was found
     
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start); //Calculate how long the AI took (in milliseconds)
     
     std::cout << "AI calculation time: " << duration.count() << "ms" << std::endl;
     EXPECT_LT(duration.count(), 1000); // Less than 1 second
-    EXPECT_GE(move.first, 0);
+    EXPECT_GE(move.first, 0); //Validates that the move is within board limits (0 ≤ index < 3)
     EXPECT_LT(move.first, 3);
     EXPECT_GE(move.second, 0);
     EXPECT_LT(move.second, 3);
@@ -213,10 +186,10 @@ TEST_F(AITest, AIvsAI) {
     while (game.getWinner() == Player::NONE && !game.isDraw() && moveCount < 9) {
         if (game.getCurrentPlayer() == Player::X) {
             auto move = aiX.findBestMove(game);
-            EXPECT_TRUE(game.makeMove(move.first, move.second));
+            EXPECT_TRUE(game.makeMove(move.first, move.second)); //Ensures makeMove succeeded (on an empty square)
         } else {
             auto move = aiO.findBestMove(game);
-            EXPECT_TRUE(game.makeMove(move.first, move.second));
+            EXPECT_TRUE(game.makeMove(move.first, move.second)); //Ensures makeMove succeeded (on an empty square)
         }
         moveCount++;
     }

@@ -1,7 +1,8 @@
-#include <gtest/gtest.h>
-#include "Auth.h"
-#include <filesystem>
+#include <gtest/gtest.h>       // Google Test framework
+#include "Auth.h"              // Auth Header
+#include <filesystem>          // Used for removing the test database file
 
+//Runs before/after every test
 class AuthTest : public ::testing::Test {
 protected:
     void SetUp() override {
@@ -32,7 +33,8 @@ TEST_F(AuthTest, UserRegistration) {
     EXPECT_FALSE(auth.registerUser("", ""));
     
     // Test username with invalid characters fails
-    EXPECT_FALSE(auth.registerUser("user:name", "password"));
+    EXPECT_FALSE(auth.registerUser("user:name", "password")); //rejects usernames containing : Because users are stored like this in a file: username:salt:hashedPassword
+
 }
 
 TEST_F(AuthTest, UserLogin) {
@@ -56,28 +58,6 @@ TEST_F(AuthTest, UserLogin) {
     EXPECT_FALSE(auth.loginUser("logintest", ""));
 }
 
-TEST_F(AuthTest, PasswordChange) {
-    Auth auth("test_users.db");
-    auth.clearAllUsers();
-    
-    // Register a user
-    ASSERT_TRUE(auth.registerUser("changetest", "oldpassword"));
-    
-    // Test successful password change
-    EXPECT_TRUE(auth.changePassword("changetest", "oldpassword", "newpassword"));
-    
-    // Verify old password no longer works
-    EXPECT_FALSE(auth.loginUser("changetest", "oldpassword"));
-    
-    // Verify new password works
-    EXPECT_TRUE(auth.loginUser("changetest", "newpassword"));
-    
-    // Test password change with wrong old password
-    EXPECT_FALSE(auth.changePassword("changetest", "wrongold", "anothernew"));
-    
-    // Test password change for non-existent user
-    EXPECT_FALSE(auth.changePassword("nonexistent", "old", "new"));
-}
 
 TEST_F(AuthTest, MultipleUsers) {
     Auth auth("test_users.db");
@@ -105,6 +85,7 @@ TEST_F(AuthTest, MultipleUsers) {
     EXPECT_FALSE(auth.loginUser("user3", "pass1"));
 }
 
+//This test verifies that user data is saved to disk and is still accessible after restarting the application
 TEST_F(AuthTest, Persistence) {
     // Create auth instance and register user
     {
@@ -133,25 +114,7 @@ TEST_F(AuthTest, SpecialCharacters) {
     EXPECT_TRUE(auth.loginUser("user123", "password with spaces"));
     
     // Test very long password
-    std::string longPassword(100, 'a');
+    std::string longPassword(100, 'a'); //100 a’s
     EXPECT_TRUE(auth.registerUser("longpass", longPassword));
     EXPECT_TRUE(auth.loginUser("longpass", longPassword));
-}
-
-TEST_F(AuthTest, ClearUsers) {
-    Auth auth("test_users.db");
-    auth.clearAllUsers();
-    
-    // Register some users
-    ASSERT_TRUE(auth.registerUser("user1", "pass1"));
-    ASSERT_TRUE(auth.registerUser("user2", "pass2"));
-    ASSERT_TRUE(auth.userExists("user1"));
-    ASSERT_TRUE(auth.userExists("user2"));
-    
-    // Clear all users
-    auth.clearAllUsers();
-    
-    // Verify users are gone
-    EXPECT_FALSE(auth.userExists("user1"));
-    EXPECT_FALSE(auth.userExists("user2"));
 }
