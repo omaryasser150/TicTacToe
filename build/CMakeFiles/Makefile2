@@ -160,8 +160,8 @@ CMakeFiles/TicTacToeCore.dir/clean:
 # Target rules for target CMakeFiles/TicTacToe.dir
 
 # All Build rule for target.
-CMakeFiles/TicTacToe.dir/all: CMakeFiles/TicTacToeCore.dir/all
 CMakeFiles/TicTacToe.dir/all: CMakeFiles/TicTacToe_autogen_timestamp_deps.dir/all
+CMakeFiles/TicTacToe.dir/all: CMakeFiles/TicTacToeCore.dir/all
 CMakeFiles/TicTacToe.dir/all: CMakeFiles/TicTacToe_autogen.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToe.dir\build.make CMakeFiles/TicTacToe.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TicTacToe.dir\build.make CMakeFiles/TicTacToe.dir/build
